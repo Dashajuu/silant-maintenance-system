@@ -48,12 +48,12 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
 
     'machines',
-    'technical_service'
+    'technical_service',
     'complaints',
     'service_company',
     'consumer',
     'manager',
-
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -72,7 +72,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +82,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
