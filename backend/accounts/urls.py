@@ -4,6 +4,8 @@ from . import views
 
 
 urlpatterns = [
+    path('create_account', views.account_creation_home, name='create_account'),
     path('create_manager', views.ManagerCreateView.as_view(), name="create_manager"),
     path('list_managers', views.ManagerListView.as_view(), name="list_managers"),
+    path('create_client', views.ClientCreateView.as_view(), name="create_client"),
 ]

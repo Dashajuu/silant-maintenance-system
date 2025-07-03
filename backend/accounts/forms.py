@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Manager
+from .models import Manager, Client
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -43,7 +43,7 @@ class ManagerCreationForm(CustomUserCreationForm):
         user = super().save(commit=commit)
 
         if commit:
-            Manager.objects.create(
+            Manager.objects.get_or_create(
                 user=user,
                 phone_number=self.cleaned_data['phone_number'],
                 email=self.cleaned_data['email'],
@@ -52,3 +52,23 @@ class ManagerCreationForm(CustomUserCreationForm):
             )
         return user
 
+
+class ClientCreationForm(CustomUserCreationForm):
+    name = forms.CharField(max_length=150, label='Название компании')
+
+    class Meta(CustomUserCreationForm.Meta):
+        fields = CustomUserCreationForm.Meta.fields + ('name',)
+
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+        manager = Manager.objects.get(user=user)
+
+        if commit:
+            Client.objects.get_or_create(
+                user=user,
+                phone_number=self.cleaned_data['phone_number'],
+                email=self.cleaned_data['email'],
+                telegram=self.cleaned_data['telegram'],
+                manager=manager,
+            )
+        return user
