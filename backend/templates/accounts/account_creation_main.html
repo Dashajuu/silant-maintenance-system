@@ -1,4 +1,4 @@
-{% extends 'accounts/default.html' %}
+{% extends 'default.html' %}
 
 
 {% block head_title %}Account creation{% endblock %}
@@ -6,5 +6,11 @@
 {% block head %}
     <a href="{% url 'create_manager' %}"><p>
         Manager
+    </p></a>
+    <a href="{% url 'create_client' %}"><p>
+        Client
+    </p></a>
+    <a href="{% url 'create_service_master' %}"><p>
+        Service Master
     </p></a>
 {% endblock %}

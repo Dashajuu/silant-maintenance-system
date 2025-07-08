@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView
 
-from .forms import ManagerCreationForm, ClientCreationForm
+from .forms import ManagerCreationForm, ClientCreationForm, ServiceMasterCreationForm, ContactPersonCreationForm
 from .models import Manager, Client
 
 
@@ -27,5 +27,17 @@ class ManagerCreateView(CreateView):
 
 class ClientCreateView(CreateView):
     form_class = ClientCreationForm
+    template_name = 'accounts/create_account.html'
+    success_url = reverse_lazy('create_account')
+
+
+class ServiceMasterCreateView(CreateView):
+    form_class = ServiceMasterCreationForm
+    template_name = 'accounts/create_account.html'
+    success_url = reverse_lazy('create_account')
+
+
+class ContactPersonCreateView(CreateView):
+    form_class = ContactPersonCreationForm
     template_name = 'accounts/create_account.html'
     success_url = reverse_lazy('create_account')

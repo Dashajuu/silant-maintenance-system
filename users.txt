@@ -3,3 +3,24 @@ Managers:
 1. Default manager (id=1):
 login: default_manager
 password: AJSrrPgs
+
+
+Users:
+
+1. Default user (id=1):
+login: default_client
+password: HER-4wN-wzU-E9f
+
+
+Service Master:
+
+1. Default service master (id=1):
+login: default_service_master
+password: HER-4wN-wzU-E9f
+
+
+Contact Person:
+
+1. Default contact person (id=1):
+login: default_contact_person
+password: HER-4wN-wzU-E9f

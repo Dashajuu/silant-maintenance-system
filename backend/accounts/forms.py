@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Manager, Client
+from .models import Manager, Client, ServiceMaster, ContactPerson
+from service_company.models import ServiceCompany
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -61,7 +62,7 @@ class ClientCreationForm(CustomUserCreationForm):
 
     def save(self, commit=True):
         user = super().save(commit=commit)
-        manager = Manager.objects.get(user=user)
+        manager = Manager.objects.get(id=1) #TODO: possibility to choose manager by user
 
         if commit:
             Client.objects.get_or_create(
@@ -70,5 +71,48 @@ class ClientCreationForm(CustomUserCreationForm):
                 email=self.cleaned_data['email'],
                 telegram=self.cleaned_data['telegram'],
                 manager=manager,
+            )
+        return user
+
+
+class ServiceMasterCreationForm(CustomUserCreationForm):
+    position = forms.CharField(max_length=150, label='Должность')
+    service_company = forms.ModelChoiceField(queryset=ServiceCompany.objects.all(), label='Сервисная компания')
+
+    class Meta(CustomUserCreationForm.Meta):
+        fields = CustomUserCreationForm.Meta.fields + ('position',)
+
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+        service_company = self.cleaned_data['service_company']
+
+        if commit:
+            ServiceMaster.objects.get_or_create(
+                user=user,
+                phone_number=self.cleaned_data['phone_number'],
+                email=self.cleaned_data['email'],
+                telegram=self.cleaned_data['telegram'],
+                service_company = service_company,
+            )
+        return user
+
+
+class ContactPersonCreationForm(CustomUserCreationForm):
+    service_company = forms.ModelChoiceField(queryset=ServiceCompany.objects.all(), label='Сервисная компания')
+
+    class Meta(CustomUserCreationForm.Meta):
+        fields = CustomUserCreationForm.Meta.fields
+
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+        service_company = self.cleaned_data['service_company']
+
+        if commit:
+            ContactPerson.objects.get_or_create(
+                user=user,
+                phone_number=self.cleaned_data['phone_number'],
+                email=self.cleaned_data['email'],
+                telegram=self.cleaned_data['telegram'],
+                service_company=service_company,
             )
         return user
