@@ -1,0 +1,8 @@
+{% extends 'default.html' %}
+
+{% block head_title %}Create account{% endblock %}
+
+{% block head %}
+  <a href="{% url 'login' %}"><h2>Вход</h2></a>
+  <a href="{% url 'logout' %}"><h2>Выйти</h2></a>
+{% endblock %}

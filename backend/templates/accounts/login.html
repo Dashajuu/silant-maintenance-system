@@ -1,0 +1,13 @@
+{% extends 'default.html' %}
+
+{% block head_title %}Create account{% endblock %}
+
+{% block head %}
+  <h2>Вход</h2>
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Войти</button>
+  </form>
+  <a href="{% url 'logout' %}">Выйти</a>
+{% endblock %}

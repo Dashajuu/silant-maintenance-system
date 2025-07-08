@@ -5,9 +5,9 @@ login: default_manager
 password: AJSrrPgs
 
 
-Users:
+Client:
 
-1. Default user (id=1):
+1. Default client (id=1):
 login: default_client
 password: HER-4wN-wzU-E9f
 
