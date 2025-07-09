@@ -4,5 +4,11 @@
 
 {% block head %}
   <a href="{% url 'login' %}"><h2>Вход</h2></a>
-  <a href="{% url 'logout' %}"><h2>Выйти</h2></a>
+  {% if user.is_authenticated %}
+  <h2>Hi, {{ user.username }} </h2>
+   <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Log Out</button>
+   </form>
+  {% endif %}
 {% endblock %}
