@@ -1,9 +1,20 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.core.validators import RegexValidator
 
 from .models import Manager, Client, ServiceMaster, ContactPerson
 from service_company.models import ServiceCompany
+
+
+# validators
+phone_regex = RegexValidator(regex=r'^\+7\d{10}$',
+                             message="Номер должен быть в формате: '+79123456789' (11 цифр с кодом страны)"
+                             )
+
+telegram_validator = RegexValidator(regex=r'^@[A-Za-zА-Яа-я0-9_]+$',
+                                    message='Ник должен начинаться с @ и содержать только буквы, цифры и _'
+                                    )
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -13,9 +24,9 @@ class CustomUserCreationForm(UserCreationForm):
 
     first_name = forms.CharField(max_length=100, required=False, label='Имя')
     last_name = forms.CharField(max_length=100, required=False, label='Фамилия')
-    phone_number = forms.CharField(max_length=17, required=False, label='Телефон')
+    phone_number = forms.CharField(max_length=17, required=False, label='Телефон', validators=[phone_regex])
     email = forms.EmailField(label='Email', required=False)
-    telegram = forms.CharField(required=False, label='Telegram')
+    telegram = forms.CharField(required=False, label='Telegram', validators=[telegram_validator])
 
     class Meta:
         model = User
