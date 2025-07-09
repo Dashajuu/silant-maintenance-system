@@ -141,13 +141,22 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+# Authorization
+
 LOGIN_REDIRECT_URL = 'home_page'
 
 LOGOUT_REDIRECT_URL = 'home_page'
 
+
+# DateField format
+
+DATE_INPUT_FORMATS = ["%d.%m.%Y"]
+
+USE_L10N = False
