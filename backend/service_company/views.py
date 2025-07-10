@@ -3,9 +3,9 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from .forms import ServiceCompanyForm
-from .models import ServiceCompany
 
 
+# Create views
 class ServiceCompanyCreateView(CreateView):
     form_class = ServiceCompanyForm
     template_name = 'service_company/service_company_creation.html'

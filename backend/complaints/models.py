@@ -24,17 +24,17 @@ class Complaint(models.Model):
         ('rejected', 'Отклонена'),
     ]
 
-    failure_date = models.DateField()
-    operating_hours = models.IntegerField()
-    failure_node_description = models.TextField()
-    status = models.CharField(choices=STATUS, default='new')
+    failure_date = models.DateField('Дата отказа')
+    operating_hours = models.IntegerField('Наработка, м/час')
+    failure_node_description = models.TextField('Описание отказа')
+    status = models.CharField(choices=STATUS, default='new', verbose_name='Статус')
 
-    failure_node = models.ForeignKey(FailureNode, on_delete=models.SET_NULL, null=True, blank=True)
-    service_company = models.ForeignKey(ServiceCompany, on_delete=models.SET_NULL, null=True, blank=True, related_name='complaints')
-    machine = models.ForeignKey(Machine, on_delete=models.CASCADE, related_name='complaints')
+    failure_node = models.ForeignKey(FailureNode, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Узел отказа')
+    service_company = models.ForeignKey(ServiceCompany, on_delete=models.SET_NULL, null=True, blank=True, related_name='complaints', verbose_name='Сервисная компания')
+    machine = models.ForeignKey(Machine, on_delete=models.CASCADE, related_name='complaints', verbose_name='Машина')
 
     # fields that will be added gradually by service company
-    recovery_method = models.ForeignKey(RecoveryMethod, on_delete=models.SET_NULL, null=True, blank=True)
-    used_spare_parts = models.TextField(null=True, blank=True)
-    recovery_date = models.DateField(null=True, blank=True)
-    downtime = models.CharField(max_length=25, null=True, blank=True)
+    recovery_method = models.ForeignKey(RecoveryMethod, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Способ восстановления')
+    used_spare_parts = models.TextField(null=True, blank=True, verbose_name='Используемые запасные части')
+    recovery_date = models.DateField(null=True, blank=True, verbose_name='Дата восстановления')
+    downtime = models.CharField(max_length=25, null=True, blank=True, verbose_name='Время простоя техники')

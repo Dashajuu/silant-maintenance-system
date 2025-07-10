@@ -7,7 +7,6 @@ from . import models
 
 
 # Create view
-
 class MachineTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.MachineType)
     template_name = 'machines/create_machine_item.html'

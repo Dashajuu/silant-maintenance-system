@@ -14,7 +14,6 @@ def make_reference_item_form(model_class):
 
 
 class MachineCreationForm(forms.ModelForm):
-
     class Meta:
         model = models.Machine
         fields = '__all__'

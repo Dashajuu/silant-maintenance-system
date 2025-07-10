@@ -7,11 +7,11 @@ from . import views
 
 urlpatterns = [
     # accounts' creation urls
-    path('create_account', views.account_creation_home, name='create_account'),
-    path('create_manager', views.ManagerCreateView.as_view(), name="create_manager"),
-    path('create_client', views.ClientCreateView.as_view(), name="create_client"),
-    path('create_service_master', views.ServiceMasterCreateView.as_view(), name='create_service_master'),
-    path('create_contact_person', views.ContactPersonCreateView.as_view(), name='create_contact_person'),
+    path('create', views.account_creation_home, name='create_account'),
+    path('manager/create', views.ManagerCreateView.as_view(), name="create_manager"),
+    path('client/create', views.ClientCreateView.as_view(), name="create_client"),
+    path('service_master/create', views.ServiceMasterCreateView.as_view(), name='create_service_master'),
+    path('contact_person/create', views.ContactPersonCreateView.as_view(), name='create_contact_person'),
 
     # authorization's urls
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),

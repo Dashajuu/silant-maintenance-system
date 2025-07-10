@@ -19,6 +19,7 @@ class ManagerListView(ListView):
     template_name = 'accounts/manager-list.html'
 
 
+# Create view
 class ManagerCreateView(CreateView):
     form_class = ManagerCreationForm
     template_name = 'accounts/create_account.html'
