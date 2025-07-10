@@ -23,8 +23,8 @@ class BaseModel(models.Model):
 
 
 class ServiceMaster(BaseModel):
-    position = models.CharField(max_length=150, blank=True, null=True)
-    service_company = models.ForeignKey(ServiceCompany, on_delete=models.CASCADE, related_name='service_master')
+    position = models.CharField('Должность', max_length=150, blank=True, null=True)
+    service_company = models.ForeignKey(ServiceCompany, on_delete=models.CASCADE, related_name='service_master', verbose_name='Сервисная компания')
 
 
 # Service company's contact person: just for case
@@ -42,5 +42,5 @@ def get_fault_manger():
 
 
 class Client(BaseModel):
-    name = models.CharField(max_length=150)
+    name = models.CharField('Название компании', max_length=150)
     manager = models.ForeignKey(Manager,on_delete=models.SET_DEFAULT, default=get_fault_manger, related_name='clients')

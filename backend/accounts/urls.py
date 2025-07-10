@@ -1,3 +1,5 @@
+from tkinter.font import names
+
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.conf import settings
@@ -12,6 +14,12 @@ urlpatterns = [
     path('client/create', views.ClientCreateView.as_view(), name="create_client"),
     path('service_master/create', views.ServiceMasterCreateView.as_view(), name='create_service_master'),
     path('contact_person/create', views.ContactPersonCreateView.as_view(), name='create_contact_person'),
+
+    # accounts' update urls
+    path('manager/<int:pk>/edit', views.ManagerUpdateView.as_view(), name='update_manager'),
+    path('client/<int:pk>/edit', views.ClientUpdateView.as_view(), name='update_client'),
+    path('service_master/<int:pk>/edit', views.ServiceMasterUpdateView.as_view(), name='update_service_master'),
+    path('contact_person/<int:pk>/edit', views.ContactPersonUpdateView.as_view(), name='update_contact_person'),
 
     # authorization's urls
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),

@@ -17,6 +17,7 @@ telegram_validator = RegexValidator(regex=r'^@[A-Za-zА-Яа-я0-9_]+$',
                                     )
 
 
+# Create form
 class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(max_length=100, label='Логин')
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
@@ -82,6 +83,7 @@ class ClientCreationForm(CustomUserCreationForm):
                 email=self.cleaned_data['email'],
                 telegram=self.cleaned_data['telegram'],
                 manager=manager,
+                name=self.cleaned_data['name'],
             )
         return user
 
@@ -103,7 +105,8 @@ class ServiceMasterCreationForm(CustomUserCreationForm):
                 phone_number=self.cleaned_data['phone_number'],
                 email=self.cleaned_data['email'],
                 telegram=self.cleaned_data['telegram'],
-                service_company = service_company,
+                service_company=service_company,
+                position=self.cleaned_data['position'],
             )
         return user
 
@@ -127,3 +130,46 @@ class ContactPersonCreationForm(CustomUserCreationForm):
                 service_company=service_company,
             )
         return user
+
+
+
+# factory function that generates a form class for custom update account forms
+def make_custom_update_form(model_class, *form_fields):
+    class CustomUserUpdateForm(forms.ModelForm):
+        username = forms.CharField(max_length=150, label='Логин')
+        first_name = forms.CharField(max_length=150, required=False, label='Имя')
+        last_name = forms.CharField(max_length=150, required=False, label='Фамилия')
+        email = forms.EmailField(required=False, label='Email')
+        phone_number = forms.CharField(max_length=17, required=False, label='Телефон')
+        telegram = forms.CharField(required=False, label='Telegram')
+
+        class Meta:
+            model = model_class
+            fields = [*form_fields]
+
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            if self.instance and self.instance.user:
+                user = self.instance.user
+                self.fields['username'].initial = user.username
+                self.fields['first_name'].initial = user.first_name
+                self.fields['last_name'].initial = user.last_name
+                self.fields['email'].initial = user.email
+                self.fields['phone_number'].initial = self.instance.phone_number
+                self.fields['telegram'].initial = self.instance.telegram
+
+        def save(self, commit=True):
+            account = super().save(commit=False)
+            user = account.user
+            user.username = self.cleaned_data['username']
+            user.first_name = self.cleaned_data['first_name']
+            user.last_name = self.cleaned_data['last_name']
+            user.email = self.cleaned_data['email']
+            account.phone_number = self.cleaned_data['phone_number']
+            account.telegram = self.cleaned_data['telegram']
+
+            if commit:
+                user.save()
+                account.save()
+            return account
+    return CustomUserUpdateForm
