@@ -12,6 +12,9 @@ class ReferenceItem(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return self.name
+
 
 class MachineType(ReferenceItem):
     class Meta:
@@ -64,3 +67,5 @@ class Machine(models.Model):
 
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='machines')
     service_company = models.ForeignKey(ServiceCompany, on_delete=models.SET_NULL, null=True, blank=True, related_name='machines')
+
+

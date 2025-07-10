@@ -1,8 +1,9 @@
 {% extends 'default.html' %}
 
-{% block head_title %}Create machine{% endblock %}
+{% block head_title %}{{ title }}{% endblock %}
 
 {% block head %}
+  <h2>{{ title }}</h2>
   <form method="post">
       {% csrf_token %}
       {{ form }}
