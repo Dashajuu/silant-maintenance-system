@@ -1,0 +1,11 @@
+{% extends 'default.html' %}
+
+
+{% block head_title %}Account {{ account.user.username }} {% endblock %}
+
+{% block head %}
+<p>
+  Username: {{ account.user.username }}
+  Name: {{ account.user.name }}
+</p>
+{% endblock head %}

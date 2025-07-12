@@ -28,5 +28,11 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
 
+    # profile detail views
+    path('manager/<int:pk>', views.ManagerProfileDetailView.as_view(), name='manager_detail'),
+    path('client/<int:pk>', views.ClientProfileDetailView.as_view(), name='client_detail'),
+    path('service_master/<int:pk>', views.ServiceMasterProfileDetailView.as_view(), name='service_master_detail'),
+    path('contact_person/<int:pk>', views.ContactPersonProfileDetailView.as_view(), name='contact_person_detail'),
+
     path('list_managers', views.ManagerListView.as_view(), name="list_managers"),
 ]

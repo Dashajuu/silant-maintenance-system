@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.models import User
 
 from .forms import ManagerCreationForm, ClientCreationForm, ServiceMasterCreationForm, ContactPersonCreationForm, make_custom_update_form
@@ -79,3 +79,29 @@ class AccountDeleteView(DeleteView):
     model = User
     template_name = 'accounts/delete_account.html'
     success_url = reverse_lazy('create_account')
+
+
+# TODO: пересмотреть шаблоны
+# Detail views
+class ManagerProfileDetailView(DetailView):
+    model = Manager
+    template_name = 'accounts/detail_account.html'
+    context_object_name = 'account'
+
+
+class ClientProfileDetailView(DetailView):
+    model = Client
+    template_name = 'accounts/detail_account.html'
+    context_object_name = 'account'
+
+
+class ServiceMasterProfileDetailView(DetailView):
+    model = ServiceMaster
+    template_name = 'accounts/detail_account.html'
+    context_object_name = 'account'
+
+
+class ContactPersonProfileDetailView(DetailView):
+    model = ContactPerson
+    template_name = 'accounts/detail_account.html'
+    context_object_name = 'account'
