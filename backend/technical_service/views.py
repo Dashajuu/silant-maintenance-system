@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 
 from .forms import MaintenanceCreationForm
@@ -55,6 +55,14 @@ class MaintenanceCreateView(CreateView):
 
 
 # Update view
+class MaintenanceTypeUpdateView(UpdateView):
+    model = models.MaintenanceType
+    form_class = make_reference_item_form(model)
+    template_name = 'machines/create_machine_item.html'
+    success_url = reverse_lazy('home_page')
+
+
+# Report from service on maintenance request
 class ServiceMaintenanceUpdateView(UpdateView):
     form_class = MaintenanceCreationForm
     model = models.Maintenance
@@ -66,3 +74,45 @@ class ServiceMaintenanceUpdateView(UpdateView):
         kwargs['show_service_fields'] = True
         kwargs['show_request_fields'] = True
         return kwargs
+
+
+ # Edit maintenance user request by client
+class MaintenanceRequestUpdateView(UpdateView):
+    model = models.Maintenance
+    form_class = MaintenanceCreationForm
+    template_name = 'machines/create_machine_item.html'
+    success_url = reverse_lazy('home_page')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['show_service_fields'] = False
+        kwargs['show_request_fields'] = False
+        return kwargs
+
+
+class BackdateMaintenanceUpdateView(UpdateView):
+    model = models.Maintenance
+    form_class = MaintenanceCreationForm
+    template_name = 'machines/create_machine_item.html'
+    success_url = reverse_lazy('home_page')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['show_service_fields'] = False
+        kwargs['show_request_fields'] = True
+        return kwargs
+
+
+# Delete view
+class MaintenanceTypeDeleteView(DeleteView):
+    model = models.MaintenanceType
+    template_name = 'machines/delete_machine.html'
+    context_object_name = 'machine_delete'
+    success_url = reverse_lazy('home_page')
+
+
+class MaintenanceDeleteView(DeleteView):
+    model = models.Maintenance
+    template_name = 'machines/delete_machine.html'
+    context_object_name = 'machine_delete'
+    success_url = reverse_lazy('home_page')
