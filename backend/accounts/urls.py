@@ -21,6 +21,9 @@ urlpatterns = [
     path('service_master/<int:pk>/edit', views.ServiceMasterUpdateView.as_view(), name='update_service_master'),
     path('contact_person/<int:pk>/edit', views.ContactPersonUpdateView.as_view(), name='update_contact_person'),
 
+    # accounts' delete urls
+    path('<int:pk>/delete', views.AccountDeleteView.as_view(), name='delete_account'),
+
     # authorization's urls
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),

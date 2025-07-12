@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 
 from .forms import ManagerCreationForm, ClientCreationForm, ServiceMasterCreationForm, ContactPersonCreationForm, make_custom_update_form
@@ -71,4 +71,11 @@ class ContactPersonUpdateView(UpdateView):
     model = ContactPerson
     form_class = make_custom_update_form(model, 'service_company')
     template_name = 'accounts/create_account.html'
+    success_url = reverse_lazy('create_account')
+
+
+# Delete views
+class AccountDeleteView(DeleteView):
+    model = User
+    template_name = 'accounts/delete_account.html'
     success_url = reverse_lazy('create_account')

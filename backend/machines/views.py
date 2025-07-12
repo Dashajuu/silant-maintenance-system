@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 from .forms import make_reference_item_form, MachineCreationForm
 from . import models
 
 
 # Create view
+# TODO: норм ли сделать функцию фабрику для крад вьюшек?
 class MachineTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.MachineType)
     template_name = 'machines/create_machine_item.html'
@@ -39,6 +40,7 @@ class TransmissionTypeCreateView(CreateView):
         context['title'] = 'Модель трансмиссии'
         return context
 
+
 class DriveAxleTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.DriveAxleType)
     template_name = 'machines/create_machine_item.html'
@@ -70,3 +72,64 @@ class MachineCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Машина'
         return context
+
+
+# Update views
+class MachineTypeUpdateView(UpdateView):
+    model = models.MachineType
+    form_class = make_reference_item_form(model)
+    template_name = 'machines/create_machine_item.html'
+    success_url = reverse_lazy('home_page')
+
+
+class EngineTypeUpdateView(UpdateView):
+    model = models.EngineType
+    form_class = make_reference_item_form(model)
+    template_name = 'machines/create_machine_item.html'
+    success_url = reverse_lazy('home_page')
+
+
+class TransmissionTypeUpdateView(UpdateView):
+    model = models.TransmissionType
+    form_class = make_reference_item_form(model)
+    template_name = 'machines/create_machine_item.html'
+    success_url = reverse_lazy('home_page')
+
+
+class DriveAxleTypeUpdateView(UpdateView):
+    model = models.DriveAxleType
+    form_class = make_reference_item_form(model)
+    template_name = 'machines/create_machine_item.html'
+    success_url = reverse_lazy('home_page')
+
+
+class SteerAxleTypeUpdateView(UpdateView):
+    model = models.SteerAxleType
+    form_class = make_reference_item_form(model)
+    template_name = 'machines/create_machine_item.html'
+    success_url = reverse_lazy('home_page')
+
+
+class MachineUpdateView(UpdateView):
+    model = models.Machine
+    form_class = MachineCreationForm
+    template_name = 'machines/create_machine_item.html'
+    success_url = reverse_lazy('home_page')
+
+
+# Delete views
+def delete_item_view(machine_model):
+    class ItemDeleteView(DeleteView):
+        model = machine_model
+        template_name = 'machines/delete_machine.html'
+        context_object_name = 'machine_delete'
+        success_url = reverse_lazy('home_page')
+
+    return ItemDeleteView
+
+
+class MachineDeleteView(DeleteView):
+    model = models.Machine
+    template_name = 'machines/delete_machine.html'
+    context_object_name = 'machine_delete'
+    success_url = reverse_lazy('home_page')
