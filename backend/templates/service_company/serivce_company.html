@@ -1,0 +1,16 @@
+{% extends 'default.html' %}
+
+
+{% block head_title %}Delete service company{% endblock %}
+
+
+{% block head %}
+<h2 class="display-5 fw-bold text-sm-center">Удаление service company</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    <p class="fs-4 text-sm-center">Удаляем {{ service_compnay_delete.name }}?</p>
+    <div class="d-grid gap-2 justify-content-sm-center">
+    <input class="btn btn-primary btn-lg px-4 gap-3" type="submit" value="Удалить" />
+    </div>
+</form>
+{% endblock head %}
