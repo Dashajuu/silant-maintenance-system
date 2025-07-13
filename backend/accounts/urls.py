@@ -34,5 +34,9 @@ urlpatterns = [
     path('service_master/<int:pk>', views.ServiceMasterProfileDetailView.as_view(), name='service_master_detail'),
     path('contact_person/<int:pk>', views.ContactPersonProfileDetailView.as_view(), name='contact_person_detail'),
 
-    path('list_managers', views.ManagerListView.as_view(), name="list_managers"),
+    # profile list views
+    path('manager/list', views.ManagerListView.as_view(), name="list_managers"),
+    path('client/list', views.ClientListView.as_view(), name='list_clients'),
+    path('service_master/list', views.ServiceMasterListView.as_view(), name='list_serivce_master'),
+    path('contact_person/list', views.ContactPersonListView.as_view(), name='list_contact_person'),
 ]

@@ -13,13 +13,6 @@ def account_creation_home(request):
     return render(request, "accounts/account_creation_main.html")
 
 
-# TODO: unnecessary, delete later
-class ManagerListView(ListView):
-    model = Manager
-    context_object_name = 'managers'
-    template_name = 'accounts/manager-list.html'
-
-
 # Create view
 class ManagerCreateView(CreateView):
     form_class = ManagerCreationForm
@@ -105,3 +98,28 @@ class ContactPersonProfileDetailView(DetailView):
     model = ContactPerson
     template_name = 'accounts/detail_account.html'
     context_object_name = 'account'
+
+
+# List views
+class ManagerListView(ListView):
+    model = Manager
+    context_object_name = 'accounts'
+    template_name = 'accounts/accounts-list.html'
+
+
+class ClientListView(ListView):
+    model = Client
+    context_object_name = 'accounts'
+    template_name = 'accounts/accounts-list.html'
+
+
+class ServiceMasterListView(ListView):
+    model = ServiceMaster
+    context_object_name = 'accounts'
+    template_name = 'accounts/accounts-list.html'
+
+
+class ContactPersonListView(ListView):
+    model = ContactPerson
+    context_object_name = 'accounts'
+    template_name = 'accounts/accounts-list.html'
