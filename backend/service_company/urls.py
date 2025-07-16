@@ -11,4 +11,10 @@ urlpatterns = [
 
     # service companies' delete urls
     path('<int:pk>/delete', views.ServiceCompanyDeleteView.as_view(), name='delete_service_company'),
+
+    # service companies' detail urls
+    path('<int:pk>', views.ServiceCompanyDetailView.as_view(), name='detail_service_company'),
+
+    # service companies' list urls
+    path('list', views.ServiceCompanyListView.as_view(), name='list_service_company'),
 ]
