@@ -173,3 +173,20 @@ def make_custom_update_form(model_class, *form_fields):
                 account.save()
             return account
     return CustomUserUpdateForm
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField(
+        label='Логин',
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Введите логин',
+            'class': 'form-input'
+        })
+    )
+    password = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput(attrs={
+            'placeholder': 'Введите пароль',
+            'class': 'form-input'
+        })
+    )

@@ -1,12 +1,38 @@
 {% extends 'default.html' %}
 
-{% block title %}Create account{% endblock %}
+{% load static %}
+
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
+{% endblock %}
+
+
+{% block title %}
+Вход в личный кабинет Силант
+{% endblock %}
 
 {% block main %}
-  <h2>Вход</h2>
-  <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Войти</button>
-  </form>
+    <main>
+        <div class="login-title">
+            <h2>Вход в личный кабинет Силант</h2>
+        </div>
+
+        <div class="login-form">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-input">
+                  <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
+                         maxlength="150" required="" id="id_username" placeholder="  Введите логин">
+                </div>
+
+                <div class="form-input">
+                  <input type="password" name="password" autocomplete="current-password"
+                         required="" id="id_password" placeholder="  Введите пароль">
+                </div>
+
+                <button type="submit" class="login-btn">Войти</button>
+            </form>
+        </div>
+    </main>
 {% endblock %}

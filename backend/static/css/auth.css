@@ -1,0 +1,47 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75dvh;
+    gap: 1rem;
+    font-family: 'PT Astra Sans';
+    font-weight: normal;
+    color: #163E6C;
+}
+
+.login-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-input input {
+    width: 21rem;
+    height: 2rem;
+    border-color: #163E6C;
+    border-width: 0.01rem;
+    border-radius: 0.2rem;
+}
+
+
+.login-btn {
+    width: 15rem;
+    height: 2rem;
+    background-color: #163E6C;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem;
+    letter-spacing: 0.05rem;
+    border-color: #163E6C;
+    border-width: 0.01rem;
+    border-radius: 0.2rem;
+}
+
+.login-btn:hover {
+    border-color: #D20A11;
+    background-color: #D20A11;
+}

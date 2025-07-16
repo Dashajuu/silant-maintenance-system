@@ -10,7 +10,7 @@ from . import models
 # TODO: норм ли сделать функцию фабрику для крад вьюшек?
 class MachineTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.MachineType)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_context_data(self, **kwargs):
@@ -21,7 +21,7 @@ class MachineTypeCreateView(CreateView):
 
 class EngineTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.EngineType)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_context_data(self, **kwargs):
@@ -32,7 +32,7 @@ class EngineTypeCreateView(CreateView):
 
 class TransmissionTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.TransmissionType)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_context_data(self, **kwargs):
@@ -43,7 +43,7 @@ class TransmissionTypeCreateView(CreateView):
 
 class DriveAxleTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.DriveAxleType)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_context_data(self, **kwargs):
@@ -54,7 +54,7 @@ class DriveAxleTypeCreateView(CreateView):
 
 class SteerAxleTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.SteerAxleType)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_context_data(self, **kwargs):
@@ -65,7 +65,7 @@ class SteerAxleTypeCreateView(CreateView):
 
 class MachineCreateView(CreateView):
     form_class = MachineCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_context_data(self, **kwargs):
@@ -78,42 +78,42 @@ class MachineCreateView(CreateView):
 class MachineTypeUpdateView(UpdateView):
     model = models.MachineType
     form_class = make_reference_item_form(model)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
 
 class EngineTypeUpdateView(UpdateView):
     model = models.EngineType
     form_class = make_reference_item_form(model)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
 
 class TransmissionTypeUpdateView(UpdateView):
     model = models.TransmissionType
     form_class = make_reference_item_form(model)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
 
 class DriveAxleTypeUpdateView(UpdateView):
     model = models.DriveAxleType
     form_class = make_reference_item_form(model)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
 
 class SteerAxleTypeUpdateView(UpdateView):
     model = models.SteerAxleType
     form_class = make_reference_item_form(model)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
 
 class MachineUpdateView(UpdateView):
     model = models.Machine
     form_class = MachineCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
 
@@ -121,7 +121,7 @@ class MachineUpdateView(UpdateView):
 def delete_item_view(machine_model):
     class ItemDeleteView(DeleteView):
         model = machine_model
-        template_name = 'machines/delete_machine.html'
+        template_name = 'machines/machines_confirm_delete.html'
         context_object_name = 'machine_delete'
         success_url = reverse_lazy('home_page')
 
@@ -130,7 +130,7 @@ def delete_item_view(machine_model):
 
 class MachineDeleteView(DeleteView):
     model = models.Machine
-    template_name = 'machines/delete_machine.html'
+    template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
 
@@ -149,7 +149,7 @@ def create_detail_view(item_model, item_template_name, item_context_object_name)
 
 class MachineDetailView(DetailView):
     model = models.Machine
-    template_name = 'machines/machine_detail.html'
+    template_name = 'machines/machines_detail.html'
     context_object_name = 'machine'
 
 
@@ -166,5 +166,5 @@ def create_list_view(item_model, item_template_name, item_context_object_name):
 
 class MachineListView(ListView):
     model = models.Machine
-    template_name = 'machines/machine_list.html'
+    template_name = 'machines/machines_list.html'
     context_object_name = 'machines'

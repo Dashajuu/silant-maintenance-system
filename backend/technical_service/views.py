@@ -11,7 +11,7 @@ from machines.forms import make_reference_item_form
 # Create views
 class MaintenanceTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.MaintenanceType)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_context_data(self, **kwargs):
@@ -22,7 +22,7 @@ class MaintenanceTypeCreateView(CreateView):
 
 class BackdateMaintenanceCreateView(CreateView):
     form_class = MaintenanceCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def form_valid(self, form):
@@ -39,7 +39,7 @@ class BackdateMaintenanceCreateView(CreateView):
 
 class MaintenanceCreateView(CreateView):
     form_class = MaintenanceCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def form_valid(self, form):
@@ -58,7 +58,7 @@ class MaintenanceCreateView(CreateView):
 class MaintenanceTypeUpdateView(UpdateView):
     model = models.MaintenanceType
     form_class = make_reference_item_form(model)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
 
@@ -66,7 +66,7 @@ class MaintenanceTypeUpdateView(UpdateView):
 class ServiceMaintenanceUpdateView(UpdateView):
     form_class = MaintenanceCreationForm
     model = models.Maintenance
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_form_kwargs(self):
@@ -80,7 +80,7 @@ class ServiceMaintenanceUpdateView(UpdateView):
 class MaintenanceRequestUpdateView(UpdateView):
     model = models.Maintenance
     form_class = MaintenanceCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_form_kwargs(self):
@@ -93,7 +93,7 @@ class MaintenanceRequestUpdateView(UpdateView):
 class BackdateMaintenanceUpdateView(UpdateView):
     model = models.Maintenance
     form_class = MaintenanceCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_form_kwargs(self):
@@ -106,14 +106,14 @@ class BackdateMaintenanceUpdateView(UpdateView):
 # Delete views
 class MaintenanceTypeDeleteView(DeleteView):
     model = models.MaintenanceType
-    template_name = 'machines/delete_machine.html'
+    template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
 
 
 class MaintenanceDeleteView(DeleteView):
     model = models.Maintenance
-    template_name = 'machines/delete_machine.html'
+    template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
 
@@ -122,24 +122,24 @@ class MaintenanceDeleteView(DeleteView):
 # Detail views
 class MaintenanceTypeDetailView(DetailView):
     model = models.MaintenanceType
-    template_name = 'machines/item_detail.html'
+    template_name = 'machines/machines_items_detail.html'
     context_object_name = 'item'
 
 
 class MaintenanceDetailView(DetailView):
     model = models.Maintenance
-    template_name = 'technical_service/maintenance_detail.html'
+    template_name = 'technical_service/technical_service_detail.html'
     context_object_name = 'maintenance'
 
 
 # List views
 class MaintenanceTypeListView(ListView):
     model = models.MaintenanceType
-    template_name = 'machines/item_list.html'
+    template_name = 'machines/machines_items_list.html'
     context_object_name = 'items'
 
 
 class MaintenanceListView(ListView):
     model = models.Maintenance
-    template_name = 'technical_service/maintenance_list.html'
+    template_name = 'technical_service/technical_service_list.html'
     context_object_name = 'maintenances'

@@ -1,7 +1,17 @@
 @font-face {
     font-family: 'PT Astra Sans';
     src: url('../fonts/PT-Astra-Sans_Bold.ttf');
+    font-weight: bold;
 }
+
+
+@font-face {
+    font-family: 'PT Astra Sans';
+    src: url('../fonts/PT-Astra-Sans_Regular.ttf');
+    font-weight: normal;
+}
+
+
 
 /* default html*/
 * {
@@ -41,6 +51,7 @@ img {
     padding: 1.9rem 5rem;
     font-family: 'PT Astra Sans';
     font-size: 0.9rem;
+    font-weight: bold;
     text-decoration: none;
     text-transform: uppercase;
     color: #163E6C;
@@ -58,6 +69,7 @@ img {
     padding: 1.9rem 5rem;
     font-family: 'PT Astra Sans';
     font-size: 0.9rem;
+    font-weight: bold;
     text-decoration: none;
     text-transform: uppercase;
     color: #163E6C;
@@ -141,7 +153,3 @@ img {
         padding: 0.2rem 10rem;
     }
 }
-
-
-
-/* main css */

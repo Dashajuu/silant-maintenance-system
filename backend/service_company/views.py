@@ -9,7 +9,7 @@ from .models import ServiceCompany
 # Create views
 class ServiceCompanyCreateView(CreateView):
     form_class = ServiceCompanyForm
-    template_name = 'service_company/service_company_creation.html'
+    template_name = 'service_company/service_company_create.html'
     success_url = reverse_lazy('list_managers')
 
 
@@ -17,14 +17,14 @@ class ServiceCompanyCreateView(CreateView):
 class ServiceCompanyUpdateView(UpdateView):
     model = ServiceCompany
     form_class = ServiceCompanyForm
-    template_name = 'service_company/service_company_creation.html'
+    template_name = 'service_company/service_company_create.html'
     success_url = reverse_lazy('list_managers')
 
 
 # Delete views
 class ServiceCompanyDeleteView(DeleteView):
     model = ServiceCompany
-    template_name = 'service_company/service_company_creation.html'
+    template_name = 'service_company/service_company_create.html'
     context_object_name = 'service_company_delete'
     success_url = reverse_lazy('list_managers')
 

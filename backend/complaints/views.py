@@ -13,7 +13,7 @@ from machines.forms import make_reference_item_form
 # Create view
 class FailureNodeCreateView(CreateView):
     form_class = make_reference_item_form(models.FailureNode)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_context_data(self, **kwargs):
@@ -24,7 +24,7 @@ class FailureNodeCreateView(CreateView):
 
 class RecoveryMethodCreateView(CreateView):
     form_class = make_reference_item_form(models.RecoveryMethod)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_context_data(self, **kwargs):
@@ -35,7 +35,7 @@ class RecoveryMethodCreateView(CreateView):
 
 class ComplaintCreateView(CreateView):
     form_class = ComplaintCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_form_kwargs(self):
@@ -46,7 +46,7 @@ class ComplaintCreateView(CreateView):
 
 class BackdateComplaintCreateView(CreateView):
     form_class = ComplaintCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_form_kwargs(self):
@@ -60,7 +60,7 @@ class BackdateComplaintCreateView(CreateView):
 class ComplaintUpdateView(UpdateView):
     model = models.Complaint
     form_class = ComplaintCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_form_kwargs(self):
@@ -72,7 +72,7 @@ class ComplaintUpdateView(UpdateView):
 class BackdateComplaintUpdateView(UpdateView):
     model = models.Complaint
     form_class = ComplaintCreationForm
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
     def get_form_kwargs(self):
@@ -84,35 +84,35 @@ class BackdateComplaintUpdateView(UpdateView):
 class FailureNodeUpdateView(UpdateView):
     model = models.FailureNode
     form_class = make_reference_item_form(model)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
 
 class RecoveryMethodUpdateView(UpdateView):
     model = models.RecoveryMethod
     form_class = make_reference_item_form(model)
-    template_name = 'machines/create_machine_item.html'
+    template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
 
 
 # Delete views
 class ComplaintDeleteView(DeleteView):
     model = models.Complaint
-    template_name = 'machines/delete_machine.html'
+    template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
 
 
 class FailureNodeDeleteView(DeleteView):
     model = models.FailureNode
-    template_name = 'machines/delete_machine.html'
+    template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
 
 
 class RecoveryMethodDeleteView(DeleteView):
     model = models.RecoveryMethod
-    template_name = 'machines/delete_machine.html'
+    template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
 
@@ -121,36 +121,36 @@ class RecoveryMethodDeleteView(DeleteView):
 # Detail views
 class FailureNodeDetailView(DetailView):
     model = models.FailureNode
-    template_name = 'complaints/detail_complaint.html'
+    template_name = 'complaints/complaints_detail.html'
     context_object_name = 'complaint'
 
 
 class RecoveryMethodDetailView(DetailView):
     model = models.RecoveryMethod
-    template_name = 'complaints/detail_complaint.html'
+    template_name = 'complaints/complaints_detail.html'
     context_object_name = 'complaint'
 
 
 class ComplaintDetailView(DetailView):
     model = models.Complaint
-    template_name = 'complaints/detail_complaint.html'
+    template_name = 'complaints/complaints_detail.html'
     context_object_name = 'complaint'
 
 
 # List views
 class FailureNodeListView(ListView):
     model = models.FailureNode
-    template_name = 'complaints/list_complaint.html'
+    template_name = 'complaints/complaints_list.html'
     context_object_name = 'complaints'
 
 
 class RecoveryMethodListView(ListView):
     model = models.RecoveryMethod
-    template_name = 'complaints/list_complaint.html'
+    template_name = 'complaints/complaints_list.html'
     context_object_name = 'complaints'
 
 
 class ComplaintListView(ListView):
     model = models.Complaint
-    template_name = 'complaints/list_complaint.html'
+    template_name = 'complaints/complaints_list.html'
     context_object_name = 'complaints'
