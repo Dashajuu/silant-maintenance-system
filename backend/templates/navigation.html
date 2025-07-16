@@ -1,0 +1,31 @@
+{% load static %}
+
+
+    <div class="left-navigation">
+    </div>
+    <!-- not login -->
+    <div class="logo-navigation" >
+        <a href="">
+            <img src="{% static 'images/Logotype.jpg' %}" alt="Логотип СИЛАНТ"/>
+        </a>
+    </div>
+    <div class="btn-navigation">
+        <div class="contact-navigation">
+            <a href="">
+                Контакты
+            </a>
+        </div>
+        <div class="auth-navigation">
+            {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="auth-btn">Выйти</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}">
+                Авторизация
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
