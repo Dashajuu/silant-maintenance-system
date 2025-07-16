@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import (CreateView, UpdateView, DeleteView,
+                                  ListView, DetailView)
 
 from .forms import ComplaintCreationForm
 from . import models
@@ -114,3 +115,42 @@ class RecoveryMethodDeleteView(DeleteView):
     template_name = 'machines/delete_machine.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
+
+
+# TODO: maybe add backdate complaint
+# Detail views
+class FailureNodeDetailView(DetailView):
+    model = models.FailureNode
+    template_name = 'complaints/detail_complaint.html'
+    context_object_name = 'complaint'
+
+
+class RecoveryMethodDetailView(DetailView):
+    model = models.RecoveryMethod
+    template_name = 'complaints/detail_complaint.html'
+    context_object_name = 'complaint'
+
+
+class ComplaintDetailView(DetailView):
+    model = models.Complaint
+    template_name = 'complaints/detail_complaint.html'
+    context_object_name = 'complaint'
+
+
+# List views
+class FailureNodeListView(ListView):
+    model = models.FailureNode
+    template_name = 'complaints/list_complaint.html'
+    context_object_name = 'complaints'
+
+
+class RecoveryMethodListView(ListView):
+    model = models.RecoveryMethod
+    template_name = 'complaints/list_complaint.html'
+    context_object_name = 'complaints'
+
+
+class ComplaintListView(ListView):
+    model = models.Complaint
+    template_name = 'complaints/list_complaint.html'
+    context_object_name = 'complaints'

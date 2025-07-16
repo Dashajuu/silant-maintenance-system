@@ -1,3 +1,5 @@
+from tkinter.font import names
+
 from django.urls import path
 
 from . import views
@@ -19,4 +21,14 @@ urlpatterns = [
     path('<int:pk>/delete', views.ComplaintDeleteView.as_view(), name='delete_complaint'),
     path('failure_node/<int:pk>/delete', views.FailureNodeDeleteView.as_view(), name='delete_failure_node'),
     path('recovery_method/<int:pk>/delete', views.RecoveryMethodDeleteView.as_view(), name='delete_recovery_method'),
+
+    # complaints' detail view
+    path('failure_node/<int:pk>', views.FailureNodeDetailView.as_view(), name='detail_failure_node'),
+    path('recovery_method/<int:pk>', views.RecoveryMethodDetailView.as_view(), name='detail_recovery_method'),
+    path('complaint/<int:pk>', views.ComplaintDetailView.as_view(), name='detail_complaint'),
+
+    # complaints' list view
+    path('failure_node/list', views.FailureNodeListView.as_view(), name='list_failure_node'),
+    path('recovery_method/list', views.RecoveryMethodListView.as_view(), name='list_recovery_method'),
+    path('complaint/list', views.ComplaintListView.as_view(), name='list_complaint'),
 ]
