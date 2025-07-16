@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
 
 from .forms import make_reference_item_form, MachineCreationForm
 from . import models
@@ -133,3 +133,38 @@ class MachineDeleteView(DeleteView):
     template_name = 'machines/delete_machine.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
+
+
+
+# Detail views
+
+# factory function for items' detail views
+def create_detail_view(item_model, item_template_name, item_context_object_name):
+    class ItemDetailView(DetailView):
+        model = item_model
+        template_name = item_template_name
+        context_object_name = item_context_object_name
+    return ItemDetailView
+
+
+class MachineDetailView(DetailView):
+    model = models.Machine
+    template_name = 'machines/machine_detail.html'
+    context_object_name = 'machine'
+
+
+# List view
+
+# factory function for items' list views
+def create_list_view(item_model, item_template_name, item_context_object_name):
+    class ItemListView(DetailView):
+        model = item_model
+        template_name = item_template_name
+        context_object_name = item_context_object_name
+    return ItemListView
+
+
+class MachineListView(ListView):
+    model = models.Machine
+    template_name = 'machines/machine_list.html'
+    context_object_name = 'machines'

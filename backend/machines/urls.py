@@ -29,4 +29,44 @@ urlpatterns = [
     path('transmission_type/<int:pk>/delete', views.delete_item_view(models.TransmissionType).as_view(), name='delete_transmission_type'),
     path('drive_axle_type/<int:pk>/delete', views.delete_item_view(models.DriveAxleType).as_view(), name='delete_drive_axle_type'),
     path('steer_axle_type/<int:pk>/delete', views.delete_item_view(models.SteerAxleType).as_view(), name='delete_steer_axle_type'),
+
+    # items detail views
+    path('machine_type/<int:pk>',
+         views.create_detail_view(models.MachineType, 'machines/item_detail.html','item').as_view(),
+         name='detail_machine_type'),
+    path('engine_type/<int:pk>',
+         views.create_detail_view(models.EngineType, 'machines/item_detail.html','item').as_view(),
+         name='detail_engine_type'),
+    path('transmission_type/<int:pk>',
+         views.create_detail_view(models.TransmissionType, 'machines/item_detail.html','item').as_view(),
+         name='detail_transmission_type'),
+    path('drive_axle_type/<int:pk>',
+         views.create_detail_view(models.DriveAxleType, 'machines/item_detail.html','item').as_view(),
+         name='detail_drive_axle_type'),
+    path('steer_axle_type/<int:pk>',
+         views.create_detail_view(models.SteerAxleType, 'machines/item_detail.html','item').as_view(),
+         name='detail_steer_axle_type'),
+
+    # machine detail view
+    path('<int:pk>', views.MachineDetailView.as_view(), name='detail_machine'),
+
+    # items list view
+    path('machine_type/list',
+         views.create_list_view(models.MachineType, 'machines/item_list.html','items').as_view(),
+         name='list_machine_type'),
+    path('engine_type/list',
+         views.create_list_view(models.EngineType, 'machines/item_list.html','items').as_view(),
+         name='list_engine_type'),
+    path('transmission_type/list',
+         views.create_list_view(models.TransmissionType, 'machines/item_list.html','items').as_view(),
+         name='list_transmission_type'),
+    path('drive_axle_type/list',
+         views.create_list_view(models.DriveAxleType, 'machines/item_list.html','items').as_view(),
+         name='list_drive_axle_type'),
+    path('steer_axle_type/list',
+         views.create_list_view(models.SteerAxleType, 'machines/item_list.html', 'items').as_view(),
+         name='list_steer_axle_type'),
+
+    # machine list view
+    path('list', views.MachineListView.as_view(), name='list_machine'),
 ]

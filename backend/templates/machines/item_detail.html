@@ -1,0 +1,10 @@
+{% extends 'default.html' %}
+
+
+{% block head_title %}Item {{ account.user.username }} {% endblock %}
+
+{% block head %}
+<p>
+  {{ item.name }}
+</p>
+{% endblock head %}
