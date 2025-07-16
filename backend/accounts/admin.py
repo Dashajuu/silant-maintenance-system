@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from . import models
+
+admin.site.register(models.ServiceMaster)
+admin.site.register(models.ContactPerson)
+admin.site.register(models.Manager)
+admin.site.register(models.Client)
