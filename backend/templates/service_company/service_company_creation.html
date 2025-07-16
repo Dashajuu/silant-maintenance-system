@@ -1,8 +1,8 @@
 {% extends 'default.html' %}
 
-{% block head_title %}Create service company{% endblock %}
+{% block title %}Create service company{% endblock %}
 
-{% block head %}
+{% block main %}
   <form method="post">
       {% csrf_token %}
       {{ form }}
