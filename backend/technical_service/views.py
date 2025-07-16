@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
 
 
 from .forms import MaintenanceCreationForm
@@ -8,7 +8,7 @@ from . import models
 from machines.forms import make_reference_item_form
 
 
-# Create view
+# Create views
 class MaintenanceTypeCreateView(CreateView):
     form_class = make_reference_item_form(models.MaintenanceType)
     template_name = 'machines/create_machine_item.html'
@@ -54,7 +54,7 @@ class MaintenanceCreateView(CreateView):
         return kwargs
 
 
-# Update view
+# Update views
 class MaintenanceTypeUpdateView(UpdateView):
     model = models.MaintenanceType
     form_class = make_reference_item_form(model)
@@ -103,7 +103,7 @@ class BackdateMaintenanceUpdateView(UpdateView):
         return kwargs
 
 
-# Delete view
+# Delete views
 class MaintenanceTypeDeleteView(DeleteView):
     model = models.MaintenanceType
     template_name = 'machines/delete_machine.html'
@@ -116,3 +116,30 @@ class MaintenanceDeleteView(DeleteView):
     template_name = 'machines/delete_machine.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
+
+
+# TODO: добавить разные вьюшки для бэкдейт и просто заявки
+# Detail views
+class MaintenanceTypeDetailView(DetailView):
+    model = models.MaintenanceType
+    template_name = 'machines/item_detail.html'
+    context_object_name = 'item'
+
+
+class MaintenanceDetailView(DetailView):
+    model = models.Maintenance
+    template_name = 'technical_service/maintenance_detail.html'
+    context_object_name = 'maintenance'
+
+
+# List views
+class MaintenanceTypeListView(ListView):
+    model = models.MaintenanceType
+    template_name = 'machines/item_list.html'
+    context_object_name = 'items'
+
+
+class MaintenanceListView(ListView):
+    model = models.Maintenance
+    template_name = 'technical_service/maintenance_list.html'
+    context_object_name = 'maintenances'

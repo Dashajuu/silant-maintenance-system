@@ -17,4 +17,13 @@ urlpatterns = [
     # maintenance delete urls
     path('maintenance_type/<int:pk>/delete', views.MaintenanceTypeDeleteView.as_view(), name='delete_maintenance_type'),
     path('request/<int:pk>/delete', views.MaintenanceDeleteView.as_view(), name='delete_maintenance'),
+
+    # TODO: добавить разные вьюшки для бэкдейт и просто заявки
+    # maintenance detail urls
+    path('maintenance_type/<int:pk>', views.MaintenanceTypeDetailView.as_view(), name='detail_maintenance_type'),
+    path('maintenance/<int:pk>', views.MaintenanceDetailView.as_view(), name='detail_maintenance'),
+
+    # maintenance list urls
+    path('maintenance_type/list', views.MaintenanceTypeListView.as_view(), name='list_maintenance_type'),
+    path('maintenance/list', views.MaintenanceListView.as_view(), name='maintenance'),
 ]
