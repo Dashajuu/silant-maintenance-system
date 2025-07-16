@@ -33,8 +33,7 @@ class ContactPerson(BaseModel):
 
 
 class Manager(BaseModel):
-    region = models.CharField(max_length=150, blank=True, null=True)
-
+    region = models.CharField('Регион', max_length=150, blank=True, null=True)
 
 # Zero manager for saving clients in case deleting a real manager
 def get_fault_manger():

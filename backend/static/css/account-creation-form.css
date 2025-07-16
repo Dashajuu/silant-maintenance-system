@@ -3,48 +3,64 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 75dvh;
+    height: 90dvh;
     gap: 1rem;
     font-family: 'PT Astra Sans';
     font-weight: normal;
     color: #163E6C;
 }
 
-.login-form form{
+.account-form form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
 }
 
-.form-input input {
-    width: 21rem;
-    height: 2rem;
-    border-color: #163E6C;
-    border-width: 0.01rem;
-    border-radius: 0.2rem;
+.account-form form div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.1rem;
 }
 
+.account-form form input,
+.account-form form select {
+    width: 20rem;
+    height: 1.5rem;
+}
 
-.login-btn {
-    width: 15rem;
+.account-form form select option {
+    background-color: #FFFFFF;
+    font-family: 'PT Astra Sans';
+    font-weight: normal;
+    font-size: 1rem;
+    color: #163E6C;
+}
+
+.account-form form input[type='submit'] {
+    width: 20rem;
     height: 2rem;
     background-color: #163E6C;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 0.8rem;
     letter-spacing: 0.05rem;
     border-color: #163E6C;
     border-width: 0.01rem;
     border-radius: 0.2rem;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem;
 }
 
-.login-btn:hover {
+
+.account-form form input[type='submit']:hover {
     border-color: #D20A11;
     background-color: #D20A11;
 }
+
+
 
 
 @media (max-width: 1024px) {

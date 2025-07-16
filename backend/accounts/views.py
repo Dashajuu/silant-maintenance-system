@@ -19,11 +19,21 @@ class ManagerCreateView(CreateView):
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('list_managers')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Создание аккаунта менеджера'
+        return context
+
 
 class ClientCreateView(CreateView):
     form_class = ClientCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Создание аккаунта клиента'
+        return context
 
 
 class ServiceMasterCreateView(CreateView):
@@ -31,11 +41,21 @@ class ServiceMasterCreateView(CreateView):
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Создание аккаунта мастера сервисной компании'
+        return context
+
 
 class ContactPersonCreateView(CreateView):
     form_class = ContactPersonCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Создание аккаунта контактного лица сервисной компании'
+        return context
 
 
 # Update views
@@ -45,12 +65,22 @@ class ManagerUpdateView(UpdateView):
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Редактирование аккаунта менеджера: {self.object.user.username}'
+        return context
+
 
 class ClientUpdateView(UpdateView):
     model = Client
     form_class = make_custom_update_form(model, 'name')
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Редактирование аккаунта клиента: {self.object.user.username}'
+        return context
 
 
 class ServiceMasterUpdateView(UpdateView):
@@ -59,12 +89,22 @@ class ServiceMasterUpdateView(UpdateView):
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Редактирование аккаунта мастера: {self.object.user.username}'
+        return context
+
 
 class ContactPersonUpdateView(UpdateView):
     model = ContactPerson
     form_class = make_custom_update_form(model, 'service_company')
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Редактирование аккаунта контактного лица: {self.object.user.username}'
+        return context
 
 
 # Delete views

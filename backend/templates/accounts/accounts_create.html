@@ -1,11 +1,31 @@
 {% extends 'default.html' %}
 
-{% block title %}Create account{% endblock %}
+{% load static %}
+
+
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/account-creation-form.css' %}" />
+{% endblock %}
+
+
+{% block title %}{{ title }}{% endblock %}
+
 
 {% block main %}
-  <form method="post">
-      {% csrf_token %}
-      {{ form }}
-      <input type="submit" value="Submit">
-  </form>
+    <main>
+        <div class="account-form-title">
+            <h2>{{ title }}</h2>
+        </div>
+        <div class="account-form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                {% if form.instance.pk %}
+                    <input type="submit" value="Обновить">
+                {% else %}
+                    <input type="submit" value="Создать">
+                {% endif %}
+            </form>
+        </div>
+    </main>
 {% endblock %}
