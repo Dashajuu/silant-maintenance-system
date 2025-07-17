@@ -60,7 +60,9 @@ main {
     background-color: #D20A11;
 }
 
-
+.bold {
+    font-weight: bold;
+}
 
 
 @media (max-width: 1024px) {

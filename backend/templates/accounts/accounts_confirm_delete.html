@@ -1,16 +1,38 @@
 {% extends 'default.html' %}
 
+{% load static %}
 
-{% block title %}Delete account{% endblock %}
+
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/account-creation-form.css' %}" />
+    <style>
+        main {
+            height: 80dvh;
+        }
+
+        .account-form form {
+            align-items: center;
+        }
+    </style>
+{% endblock %}
+
+
+{% block title %}Удаление {{ user.username }} {% endblock %}
 
 
 {% block main %}
-<h2 class="display-5 fw-bold text-sm-center">Удаление account</h2>
-<form action="" method="post">
-    {% csrf_token %}
-    <p class="fs-4 text-sm-center">Удаляем "{{ user.username }}"?</p>
-    <div class="d-grid gap-2 justify-content-sm-center">
-    <input class="btn btn-primary btn-lg px-4 gap-3" type="submit" value="Удалить" />
-    </div>
-</form>
+    <main>
+        <div class="account-form-title">
+            <h2 class="display-5 fw-bold text-sm-center">Удаление аккаунта</h2>
+        </div>
+        <div class="account-form">
+            <form action="" method="post">
+                {% csrf_token %}
+                <p class="account-form-subtitle">Удаляем <span class="bold">{{ user.username }}?</span></p>
+                <div>
+                <input type="submit" value="Удалить" />
+                </div>
+            </form>
+        </div>
+    </main>
 {% endblock %}

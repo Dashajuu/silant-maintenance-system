@@ -43,3 +43,6 @@ def get_fault_manger():
 class Client(BaseModel):
     name = models.CharField('Название компании', max_length=150)
     manager = models.ForeignKey(Manager,on_delete=models.SET_DEFAULT, default=get_fault_manger, related_name='clients')
+
+    def __str__(self):
+        return self.name
