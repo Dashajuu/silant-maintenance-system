@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 from django_filters.views import FilterView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
@@ -181,3 +183,10 @@ class MachineListView(ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = self.filterset
         return context
+
+    def render_to_response(self, context, **response_kwargs):
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            html = render_to_string('machines/machine_result_partial.html', context)
+            return HttpResponse(html)
+        else:
+            return super().render_to_response(context, **response_kwargs)

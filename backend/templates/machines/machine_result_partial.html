@@ -1,0 +1,36 @@
+{% if machines %}
+<table class="machine-table">
+    <thead>
+        <tr>
+            <th>Зав. номер</th>
+            <th>Модель техники</th>
+            <th>Модель двигателя</th>
+            <th>Зав. номер двигателя</th>
+            <th>Модель трансмиссии</th>
+            <th>Зав. номер трансмиссии</th>
+            <th>Модель ведущего моста</th>
+            <th>Зав. номер ведущего моста</th>
+            <th>Модель управляемого моста</th>
+            <th>Зав. номер управляемого моста</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for machine in machines %}
+            <tr>
+                <td>{{ machine.machine_serial_number }}</td>
+                <td>{{ machine.machine_type }}</td>
+                <td>{{ machine.engine_type }}</td>
+                <td>{{ machine.engine_serial_number }}</td>
+                <td>{{ machine.transmission_type }}</td>
+                <td>{{ machine.transmission_serial_number }}</td>
+                <td>{{ machine.drive_axle_type }}</td>
+                <td>{{ machine.drive_axle_serial_number }}</td>
+                <td>{{ machine.steer_axle_type }}</td>
+                <td>{{ machine.steer_axle_serial_number }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="padding: 20px;">Нет данных по выбранным фильтрам.</p>
+{% endif %}
