@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from .forms import ManagerCreationForm, ClientCreationForm, ServiceMasterCreationForm, ContactPersonCreationForm, make_custom_update_form, LoginForm
 from .models import Manager, Client, ServiceMaster, ContactPerson
 from service_company.models import ServiceCompany
+from machines.models import Machine
 
 
 # TODO: change name or delete
@@ -79,7 +80,9 @@ class ClientUpdateView(UpdateView):
     model = Client
     form_class = make_custom_update_form(model, 'name')
     template_name = 'accounts/accounts_create.html'
-    success_url = reverse_lazy('create_account')
+
+    def get_success_url(self):
+        return reverse_lazy('client_detail', kwargs={'pk': self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -91,7 +94,9 @@ class ServiceMasterUpdateView(UpdateView):
     model = ServiceMaster
     form_class = make_custom_update_form(model, 'position', 'service_company')
     template_name = 'accounts/accounts_create.html'
-    success_url = reverse_lazy('create_account')
+
+    def get_success_url(self):
+        return reverse_lazy('service_master_detail', kwargs={'pk': self.object.pk})
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -118,7 +123,6 @@ class AccountDeleteView(DeleteView):
     success_url = reverse_lazy('create_account')
 
 
-# TODO: пересмотреть шаблоны
 # Detail views
 class ManagerProfileDetailView(DetailView):
     model = Manager
@@ -134,13 +138,22 @@ class ManagerProfileDetailView(DetailView):
 
 class ClientProfileDetailView(DetailView):
     model = Client
-    template_name = 'accounts/accounts_detail.html'
+    template_name = 'accounts/accounts_client_detail.html'
     context_object_name = 'account'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['machines'] = Machine.objects.filter(client=self.object)
+        service_company_ids = Machine.objects.filter(client=self.object).values_list('service_company',
+                                                                                     flat=True).distinct()
+        context['service_companies'] = ServiceCompany.objects.filter(id__in=service_company_ids)
+
+        return context
 
 
 class ServiceMasterProfileDetailView(DetailView):
     model = ServiceMaster
-    template_name = 'accounts/accounts_detail.html'
+    template_name = 'accounts/accounts_service_master_detail.html'
     context_object_name = 'account'
 
 
