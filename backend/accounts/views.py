@@ -157,9 +157,10 @@ class ServiceMasterProfileDetailView(DetailView):
     context_object_name = 'account'
 
 
+# TODO: add profile page + template
 class ContactPersonProfileDetailView(DetailView):
     model = ContactPerson
-    template_name = 'accounts/accounts_detail.html'
+    template_name = 'accounts/accounts_service_master_detail.html'
     context_object_name = 'account'
 
 
