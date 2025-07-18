@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'service_company',
     'accounts',
     'main_app',
+
+    'django_filters',
 ]
 
 MIDDLEWARE = [

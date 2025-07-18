@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django_filters.views import FilterView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
 
 from .forms import make_reference_item_form, MachineCreationForm
 from . import models
+from .filters import MachineFilter
 
 
 # Create view
@@ -168,3 +169,15 @@ class MachineListView(ListView):
     model = models.Machine
     template_name = 'machines/machines_list.html'
     context_object_name = 'machines'
+    ordering = ['-shipment_date']
+    paginate_by = 25
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = MachineFilter(self.request.GET, queryset=queryset)
+        return self.filterset.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = self.filterset
+        return context
