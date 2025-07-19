@@ -1,0 +1,57 @@
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tab-btn {
+  width: 15rem;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #eee;
+  border: none;
+  margin-right: 5px;
+}
+
+.tab-btn.active {
+  background-color: #ccc;
+  font-weight: bold;
+}
+
+.machine-detail-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.machine-detail-title-1 {
+    font-size: 1.5rem;
+    margin-right: 0.3rem;
+}
+
+.machine-detail-title-bold {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.machine-table-head {
+    width: 25rem;
+}
+
+.machine-table-data {
+    width: 15rem;
+}
+
+tr:nth-child(even) {
+    background-color: #fafafa;
+}

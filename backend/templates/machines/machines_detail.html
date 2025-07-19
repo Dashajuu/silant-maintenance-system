@@ -1,10 +1,301 @@
 {% extends 'default.html' %}
 
+{% load static %}
 
-{% block head_title %}Machine {% endblock %}
 
-{% block head %}
-<p>
-  {{ machine.machine_serial_number }}
-</p>
-{% endblock head %}
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/machines-detail.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/machines_list.css' %}" />
+{% endblock %}
+
+
+{% block title %}Техника №{{ machine.machine_serial_number }}{% endblock %}
+
+{% block main %}
+  <main>
+      <div class="machine-search-left"></div>
+
+      <div class="machine-search-center">
+        <div class="machine-detail-title">
+            <div class="machine-detail-title-1">Заводской номер модели {{ machine.machine_type }}:</div>
+            <div class="machine-detail-title-bold">{{ machine.machine_serial_number }}</div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="info">Общая информация</button>
+          <button class="tab-btn" data-tab="to">ТО</button>
+          <button class="tab-btn" data-tab="claims">Рекламации</button>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="title-info">
+                <div class="machine-search-title">
+                    <h2>Общая информация по машине</h2>
+                </div>
+            </div>
+            <div class="tab-pane" id="title-to">
+                <div class="machine-search-title">
+                    <h2>Общая информация по ТО</h2>
+                </div>
+            </div>
+            <div class="tab-pane" id="title-claims">
+                <div class="machine-search-title">
+                  <h2>Общая информация по рекламации</h2>
+                </div>
+            </div>
+          <div class="tab-pane active" id="info">
+            <table class="machines-table">
+                <tr>
+                    <td class="machine-table-head">
+                        Заводской номер машины
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.machine_serial_number }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Модель техники
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.machine_type }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Модель двигателя
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.engine_type }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Заводской номер двигателя
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.engine_serial_number }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Модель трансмиссии
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.transmission_type }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Заводской номер трансмиссии
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.transmission_serial_number }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Модель ведущего моста
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.drive_axle_type }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Заводской номер ведущего моста
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.drive_axle_serial_number }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Модель управляемого моста
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.steer_axle_type }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Заводской номер управляемого моста
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.steer_axle_serial_number }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Договор поставки номер и дата
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.supply_contract_number_date }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Дата отгрузки с завода
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.shipment_date }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Грузополучатель (конечный потребитель)
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.consignee_end_customer }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Адрес поставки
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.operating_address }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Адрес поставки
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.operating_address }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Комплектация
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.equipment }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Клиент
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.client }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="machine-table-head">
+                        Сервисная компания
+                    </td>
+                    <td class="machine-table-data">
+                        {{ machine.service_company }}
+                    </td>
+                </tr>
+            </table>
+          </div>
+
+          <div class="tab-pane" id="to">
+            <table class="machine-table">
+                <thead class="machine-table__head">
+                    <tr class="machine-table__row machine-table__row--head">
+                        <th class="machine-table__cell machine-table__cell--head">Вид ТО</th>
+                        <th class="machine-table__cell machine-table__cell--head">Дата проведения</th>
+                        <th class="machine-table__cell machine-table__cell--head">Наработка, м/час</th>
+                        <th class="machine-table__cell machine-table__cell--head">Номер заказ-наряда</th>
+                        <th class="machine-table__cell machine-table__cell--head">Дата заказ-наряда</th>
+                        <th class="machine-table__cell machine-table__cell--head">Сервисная компания</th>
+                        <th class="machine-table__cell machine-table__cell--head">Статус</th>
+                    </tr>
+                </thead>
+                <tbody class="machine-table__body">
+                    {% for maintenance in maintenances %}
+                        <tr class="machine-table__row">
+                            <td class="machine-table__cell">
+                                <a href="#">{{ maintenance.maintenance_type }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ maintenance.maintenance_date }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ maintenance.operating_hours }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ maintenance.work_order_number }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ maintenance.work_order_date }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ maintenance.service_company }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ maintenance.status }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          </div>
+
+          <div class="tab-pane" id="claims">
+            <table class="machine-table">
+                <thead class="machine-table__head">
+                    <tr class="machine-table__row machine-table__row--head">
+                        <th class="machine-table__cell machine-table__cell--head">Дата отказа</th>
+                        <th class="machine-table__cell machine-table__cell--head">Наработка, м/час</th>
+                        <th class="machine-table__cell machine-table__cell--head">Узел отказа</th>
+                        <th class="machine-table__cell machine-table__cell--head">Описание отказа</th>
+                        <th class="machine-table__cell machine-table__cell--head">Способ восстановления</th>
+                        <th class="machine-table__cell machine-table__cell--head">Используемые запасные части</th>
+                        <th class="machine-table__cell machine-table__cell--head">Дата восстановления</th>
+                        <th class="machine-table__cell machine-table__cell--head">Время простоя техники</th>
+                        <th class="machine-table__cell machine-table__cell--head">Сервисная компания</th>
+                    </tr>
+                </thead>
+                <tbody class="machine-table__body">
+                    {% for complaint in complaints %}
+                        <tr class="machine-table__row">
+                            <td class="machine-table__cell">
+                                <a href="#">{{ complaint.failure_date }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ complaint.operating_hours }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ complaint.failure_node }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ complaint.failure_node_description }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ complaint.recovery_method }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ complaint.used_spare_parts }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ complaint.recovery_date }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ complaint.downtime }}</a></td>
+                            <td class="machine-table__cell">
+                                <a href="#">{{ complaint.service_company }}</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="machine-search-right"></div>
+  </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.tab-btn');
+        const contentPanes = document.querySelectorAll('.tab-content .tab-pane');
+        const titlePanes = document.querySelectorAll('.machine-search-title');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            const tabId = tab.getAttribute('data-tab');
+            const titleId = 'title-' + tabId;
+
+            tabs.forEach(t => t.classList.remove('active'));
+            contentPanes.forEach(p => p.classList.remove('active'));
+            titlePanes.forEach(t => t.classList.remove('active'));
+
+            tab.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById(titleId).classList.add('active');
+          });
+        });
+      });
+    </script>
+
+{% endblock %}

@@ -152,9 +152,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authorization
 
-LOGIN_REDIRECT_URL = 'home_page'
+LOGIN_REDIRECT_URL = 'list_machine'
 
-LOGOUT_REDIRECT_URL = 'home_page'
+LOGOUT_REDIRECT_URL = 'list_machine'
 
 
 # DateField format

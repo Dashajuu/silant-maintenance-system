@@ -8,6 +8,9 @@ from .forms import make_reference_item_form, MachineCreationForm
 from . import models
 from .filters import MachineFilter
 
+from technical_service.models import Maintenance
+from complaints.models import Complaint
+
 
 # Create view
 # TODO: норм ли сделать функцию фабрику для крад вьюшек?
@@ -154,6 +157,12 @@ class MachineDetailView(DetailView):
     model = models.Machine
     template_name = 'machines/machines_detail.html'
     context_object_name = 'machine'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['maintenances'] = Maintenance.objects.filter(machine=self.object)
+        context['complaints'] = Complaint.objects.filter(machine=self.object)
+        return context
 
 
 # List view
