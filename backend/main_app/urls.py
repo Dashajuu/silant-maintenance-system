@@ -1,8 +1,9 @@
 from django.urls import path
 
 from . import views
+from machines.views import MachineListView
 
 
 urlpatterns = [
-    path('', views.home, name='home_page')
+    path('', MachineListView.as_view(), name='home_page'),
 ]
