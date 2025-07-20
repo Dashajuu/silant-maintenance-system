@@ -12,12 +12,14 @@ urlpatterns = [
     path('client/create', views.ClientCreateView.as_view(), name="create_client"),
     path('service_master/create', views.ServiceMasterCreateView.as_view(), name='create_service_master'),
     path('contact_person/create', views.ContactPersonCreateView.as_view(), name='create_contact_person'),
+    path('service_company/create', views.ServiceCompanyCreateView.as_view(), name='create_service_company'),
 
     # accounts' update urls
     path('manager/<int:pk>/edit', views.ManagerUpdateView.as_view(), name='update_manager'),
     path('client/<int:pk>/edit', views.ClientUpdateView.as_view(), name='update_client'),
     path('service_master/<int:pk>/edit', views.ServiceMasterUpdateView.as_view(), name='update_service_master'),
     path('contact_person/<int:pk>/edit', views.ContactPersonUpdateView.as_view(), name='update_contact_person'),
+    path('service_company/<int:pk>/edit', views.ServiceCompanyUpdateView.as_view(), name='update_service_company'),
 
     # accounts' delete urls
     path('<int:pk>/delete', views.AccountDeleteView.as_view(), name='delete_account'),
@@ -31,10 +33,12 @@ urlpatterns = [
     path('client/<int:pk>', views.ClientProfileDetailView.as_view(), name='client_detail'),
     path('service_master/<int:pk>', views.ServiceMasterProfileDetailView.as_view(), name='service_master_detail'),
     path('contact_person/<int:pk>', views.ContactPersonProfileDetailView.as_view(), name='contact_person_detail'),
+    path('service_company/<int:pk>', views.ServiceCompanyProfileDetailView.as_view(), name='detail_service_company'),
 
     # profile list views
     path('manager/list', views.ManagerListView.as_view(), name="list_managers"),
     path('client/list', views.ClientListView.as_view(), name='list_clients'),
     path('service_master/list', views.ServiceMasterListView.as_view(), name='list_serivce_master'),
     path('contact_person/list', views.ContactPersonListView.as_view(), name='list_contact_person'),
+    path('service_company/list', views.ServiceCompanyListView.as_view(), name='list_service_company'),
 ]

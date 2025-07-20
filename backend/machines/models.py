@@ -2,7 +2,7 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 from accounts.models import Client
-from service_company.models import ServiceCompany
+from accounts.models import ServiceCompany
 
 
 class ReferenceItem(models.Model):

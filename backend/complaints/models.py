@@ -1,7 +1,7 @@
 from django.db import models
 
 from machines.models import ReferenceItem, Machine
-from service_company.models import ServiceCompany
+from accounts.models import ServiceCompany
 
 
 class FailureNode(ReferenceItem):

@@ -2,9 +2,8 @@ from django.db import models
 from django.core.validators import RegexValidator
 
 from machines.models import ReferenceItem, Machine
-from service_company.models import ServiceCompany
 from complaints.models import Complaint
-from accounts.models import ServiceMaster
+from accounts.models import ServiceMaster, ServiceCompany
 
 
 class MaintenanceType(ReferenceItem):

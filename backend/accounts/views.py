@@ -5,9 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.models import User
 
-from .forms import ManagerCreationForm, ClientCreationForm, ServiceMasterCreationForm, ContactPersonCreationForm, make_custom_update_form, LoginForm
-from .models import Manager, Client, ServiceMaster, ContactPerson
-from service_company.models import ServiceCompany
+from .forms import ManagerCreationForm, ClientCreationForm, ServiceMasterCreationForm, ContactPersonCreationForm, make_custom_update_form, LoginForm, ServiceCompanyCreationForm
+from .models import Manager, Client, ServiceMaster, ContactPerson, ServiceCompany
 from machines.models import Machine
 
 
@@ -58,6 +57,17 @@ class ContactPersonCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Создание аккаунта контактного лица сервисной компании'
+        return context
+
+
+class ServiceCompanyCreateView(CreateView):
+    form_class = ServiceCompanyCreationForm
+    template_name = 'accounts/accounts_create.html'
+    success_url = reverse_lazy('create_account')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Создание аккаунта сервисной компании'
         return context
 
 
@@ -116,6 +126,18 @@ class ContactPersonUpdateView(UpdateView):
         return context
 
 
+class ServiceCompanyUpdateView(UpdateView):
+    model = ServiceCompany
+    form_class = make_custom_update_form(model, 'name', 'description')
+    template_name = 'accounts/accounts_create.html'
+    success_url = reverse_lazy('create_account')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Редактирование аккаунта сервисной компании: {self.object.user.username}'
+        return context
+
+
 # Delete views
 class AccountDeleteView(DeleteView):
     model = User
@@ -164,6 +186,13 @@ class ContactPersonProfileDetailView(DetailView):
     context_object_name = 'account'
 
 
+# TODO: add profile page + template
+class ServiceCompanyProfileDetailView(DetailView):
+    model = ServiceCompany
+    template_name = 'accounts/accounts_service_master_detail.html'
+    context_object_name = 'account'
+
+
 # List views
 class ManagerListView(ListView):
     model = Manager
@@ -185,6 +214,12 @@ class ServiceMasterListView(ListView):
 
 class ContactPersonListView(ListView):
     model = ContactPerson
+    context_object_name = 'accounts'
+    template_name = 'accounts/accounts-list.html'
+
+
+class ServiceCompanyListView(ListView):
+    model = ServiceCompany
     context_object_name = 'accounts'
     template_name = 'accounts/accounts-list.html'
 

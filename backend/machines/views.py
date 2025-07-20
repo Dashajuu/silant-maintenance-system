@@ -3,6 +3,7 @@ from django.template.loader import render_to_string
 from django_filters.views import FilterView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
 from .forms import make_reference_item_form, MachineCreationForm
 from . import models
@@ -69,10 +70,11 @@ class SteerAxleTypeCreateView(CreateView):
         return context
 
 
-class MachineCreateView(CreateView):
+class MachineCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = MachineCreationForm
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.add_machine'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

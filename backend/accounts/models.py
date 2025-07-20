@@ -2,8 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 
-from service_company.models import ServiceCompany
-
 
 class BaseModel(models.Model):
     phone_regex = RegexValidator(regex=r'^\+7\d{10}$',
@@ -20,6 +18,15 @@ class BaseModel(models.Model):
 
     class Meta:
             abstract = True
+
+
+class ServiceCompany(BaseModel):
+    name = models.CharField('Название компании', max_length=150)
+    description = models.TextField('Описание', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
 
 
 class ServiceMaster(BaseModel):

@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'machines',
     'technical_service',
     'complaints',
-    'service_company',
     'accounts',
     'main_app',
 

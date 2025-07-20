@@ -1,10 +1,9 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm
 from django.core.validators import RegexValidator
 
-from .models import Manager, Client, ServiceMaster, ContactPerson
-from service_company.models import ServiceCompany
+from .models import Manager, Client, ServiceMaster, ContactPerson, ServiceCompany
 
 
 # validators
@@ -63,6 +62,10 @@ class ManagerCreationForm(CustomUserCreationForm):
                 telegram=self.cleaned_data['telegram'],
                 region=self.cleaned_data['region'],
             )
+
+        group_name = Group.objects.get(name='managers')
+        user.groups.add(group_name)
+
         return user
 
 
@@ -85,6 +88,10 @@ class ClientCreationForm(CustomUserCreationForm):
                 manager=manager,
                 name=self.cleaned_data['name'],
             )
+
+        group_name = Group.objects.get(name='clients')
+        user.groups.add(group_name)
+
         return user
 
 
@@ -108,6 +115,10 @@ class ServiceMasterCreationForm(CustomUserCreationForm):
                 service_company=service_company,
                 position=self.cleaned_data['position'],
             )
+
+        group_name = Group.objects.get(name='service_masters')
+        user.groups.add(group_name)
+
         return user
 
 
@@ -129,8 +140,37 @@ class ContactPersonCreationForm(CustomUserCreationForm):
                 telegram=self.cleaned_data['telegram'],
                 service_company=service_company,
             )
+
+        group_name = Group.objects.get(name='contact_persons')
+        user.groups.add(group_name)
+
         return user
 
+
+class ServiceCompanyCreationForm(CustomUserCreationForm):
+    name = forms.CharField(max_length=150, label='Название компании')
+    description = forms.CharField(label='Описание компании')
+
+    class Meta(CustomUserCreationForm.Meta):
+        fields = CustomUserCreationForm.Meta.fields + ('name', 'description')
+
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+
+        if commit:
+            ServiceCompany.objects.get_or_create(
+                user=user,
+                phone_number=self.cleaned_data['phone_number'],
+                email=self.cleaned_data['email'],
+                telegram=self.cleaned_data['telegram'],
+                name=self.cleaned_data['name'],
+                description=self.cleaned_data['description'],
+            )
+
+        group_name = Group.objects.get(name='service_companies')
+        user.groups.add(group_name)
+
+        return user
 
 
 # factory function that generates a form class for custom update account forms
