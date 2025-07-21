@@ -1,4 +1,5 @@
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -16,10 +17,11 @@ def account_creation_home(request):
 
 
 # Create view
-class ManagerCreateView(CreateView):
+class ManagerCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = ManagerCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('list_managers')
+    permission_required = 'accounts.add_manager'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,10 +29,11 @@ class ManagerCreateView(CreateView):
         return context
 
 
-class ClientCreateView(CreateView):
+class ClientCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = ClientCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+    permission_required = 'accounts.add_client'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -38,10 +41,11 @@ class ClientCreateView(CreateView):
         return context
 
 
-class ServiceMasterCreateView(CreateView):
+class ServiceMasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = ServiceMasterCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+    permission_required = 'accounts.add_service_master'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,10 +53,11 @@ class ServiceMasterCreateView(CreateView):
         return context
 
 
-class ContactPersonCreateView(CreateView):
+class ContactPersonCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = ContactPersonCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+    permission_required = 'accounts.add_contact_person'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -60,10 +65,11 @@ class ContactPersonCreateView(CreateView):
         return context
 
 
-class ServiceCompanyCreateView(CreateView):
+class ServiceCompanyCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = ServiceCompanyCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+    permission_required = 'accounts.add_service_company'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -72,10 +78,11 @@ class ServiceCompanyCreateView(CreateView):
 
 
 # Update views
-class ManagerUpdateView(UpdateView):
+class ManagerUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Manager
     form_class = make_custom_update_form(model, 'region')
     template_name = 'accounts/accounts_create.html'
+    permission_required = 'accounts.change_manager'
 
     def get_success_url(self):
         return reverse_lazy('manager_detail', kwargs={'pk': self.object.pk})
@@ -86,10 +93,11 @@ class ManagerUpdateView(UpdateView):
         return context
 
 
-class ClientUpdateView(UpdateView):
+class ClientUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Client
     form_class = make_custom_update_form(model, 'name')
     template_name = 'accounts/accounts_create.html'
+    permission_required = 'accounts.change_client'
 
     def get_success_url(self):
         return reverse_lazy('client_detail', kwargs={'pk': self.object.pk})
@@ -100,10 +108,11 @@ class ClientUpdateView(UpdateView):
         return context
 
 
-class ServiceMasterUpdateView(UpdateView):
+class ServiceMasterUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = ServiceMaster
     form_class = make_custom_update_form(model, 'position', 'service_company')
     template_name = 'accounts/accounts_create.html'
+    permission_required = 'accounts.change_service_master'
 
     def get_success_url(self):
         return reverse_lazy('service_master_detail', kwargs={'pk': self.object.pk})
@@ -114,11 +123,12 @@ class ServiceMasterUpdateView(UpdateView):
         return context
 
 
-class ContactPersonUpdateView(UpdateView):
+class ContactPersonUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = ContactPerson
     form_class = make_custom_update_form(model, 'service_company')
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+    permission_required = 'accounts.change_contact_person'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -126,11 +136,12 @@ class ContactPersonUpdateView(UpdateView):
         return context
 
 
-class ServiceCompanyUpdateView(UpdateView):
+class ServiceCompanyUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = ServiceCompany
     form_class = make_custom_update_form(model, 'name', 'description')
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
+    permission_required = 'accounts.change_service_company'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -139,14 +150,15 @@ class ServiceCompanyUpdateView(UpdateView):
 
 
 # Delete views
-class AccountDeleteView(DeleteView):
+class AccountDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = User
     template_name = 'accounts/accounts_confirm_delete.html'
     success_url = reverse_lazy('create_account')
+    permission_required = 'accounts.delete_account'
 
 
 # Detail views
-class ManagerProfileDetailView(DetailView):
+class ManagerProfileDetailView(LoginRequiredMixin, DetailView):
     model = Manager
     template_name = 'accounts/accounts_manager_detail.html'
     context_object_name = 'account'
@@ -158,7 +170,7 @@ class ManagerProfileDetailView(DetailView):
         return context
 
 
-class ClientProfileDetailView(DetailView):
+class ClientProfileDetailView(LoginRequiredMixin, DetailView):
     model = Client
     template_name = 'accounts/accounts_client_detail.html'
     context_object_name = 'account'
@@ -173,52 +185,52 @@ class ClientProfileDetailView(DetailView):
         return context
 
 
-class ServiceMasterProfileDetailView(DetailView):
+class ServiceMasterProfileDetailView(LoginRequiredMixin, DetailView):
     model = ServiceMaster
     template_name = 'accounts/accounts_service_master_detail.html'
     context_object_name = 'account'
 
 
 # TODO: add profile page + template
-class ContactPersonProfileDetailView(DetailView):
+class ContactPersonProfileDetailView(LoginRequiredMixin, DetailView):
     model = ContactPerson
     template_name = 'accounts/accounts_service_master_detail.html'
     context_object_name = 'account'
 
 
 # TODO: add profile page + template
-class ServiceCompanyProfileDetailView(DetailView):
+class ServiceCompanyProfileDetailView(LoginRequiredMixin, DetailView):
     model = ServiceCompany
     template_name = 'accounts/accounts_service_master_detail.html'
     context_object_name = 'account'
 
 
 # List views
-class ManagerListView(ListView):
+class ManagerListView(LoginRequiredMixin, ListView):
     model = Manager
     context_object_name = 'accounts'
     template_name = 'accounts/accounts-list.html'
 
 
-class ClientListView(ListView):
+class ClientListView(LoginRequiredMixin, ListView):
     model = Client
     context_object_name = 'accounts'
     template_name = 'accounts/accounts-list.html'
 
 
-class ServiceMasterListView(ListView):
+class ServiceMasterListView(LoginRequiredMixin, ListView):
     model = ServiceMaster
     context_object_name = 'accounts'
     template_name = 'accounts/accounts-list.html'
 
 
-class ContactPersonListView(ListView):
+class ContactPersonListView(LoginRequiredMixin, ListView):
     model = ContactPerson
     context_object_name = 'accounts'
     template_name = 'accounts/accounts-list.html'
 
 
-class ServiceCompanyListView(ListView):
+class ServiceCompanyListView(LoginRequiredMixin, ListView):
     model = ServiceCompany
     context_object_name = 'accounts'
     template_name = 'accounts/accounts-list.html'

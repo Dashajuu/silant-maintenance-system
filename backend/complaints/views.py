@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, UpdateView, DeleteView,
                                   ListView, DetailView)
@@ -11,10 +12,11 @@ from machines.forms import make_reference_item_form
 # TODO: пересмотреть шаблоны - изменить или сделать дефолтные для всех
 
 # Create view
-class FailureNodeCreateView(CreateView):
+class FailureNodeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = make_reference_item_form(models.FailureNode)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.add_failure_node'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -22,10 +24,11 @@ class FailureNodeCreateView(CreateView):
         return context
 
 
-class RecoveryMethodCreateView(CreateView):
+class RecoveryMethodCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = make_reference_item_form(models.RecoveryMethod)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.add_recovery_method'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -33,10 +36,11 @@ class RecoveryMethodCreateView(CreateView):
         return context
 
 
-class ComplaintCreateView(CreateView):
+class ComplaintCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = ComplaintCreationForm
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.add_complaint'
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -44,10 +48,11 @@ class ComplaintCreateView(CreateView):
         return kwargs
 
 
-class BackdateComplaintCreateView(CreateView):
+class BackdateComplaintCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = ComplaintCreationForm
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.add_complaint'
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -57,11 +62,12 @@ class BackdateComplaintCreateView(CreateView):
 
 
 # Update view
-class ComplaintUpdateView(UpdateView):
+class ComplaintUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.Complaint
     form_class = ComplaintCreationForm
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.change_complaint'
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -69,11 +75,12 @@ class ComplaintUpdateView(UpdateView):
         return kwargs
 
 
-class BackdateComplaintUpdateView(UpdateView):
+class BackdateComplaintUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.Complaint
     form_class = ComplaintCreationForm
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.change_complaint'
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
@@ -81,76 +88,81 @@ class BackdateComplaintUpdateView(UpdateView):
         return kwargs
 
 
-class FailureNodeUpdateView(UpdateView):
+class FailureNodeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.FailureNode
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.change_failure_node'
 
 
-class RecoveryMethodUpdateView(UpdateView):
+class RecoveryMethodUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.RecoveryMethod
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.change_recovery_method'
 
 
 # Delete views
-class ComplaintDeleteView(DeleteView):
+class ComplaintDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.Complaint
     template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.delete_complaint'
 
 
-class FailureNodeDeleteView(DeleteView):
+class FailureNodeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.FailureNode
     template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.delete_failure_node'
 
 
-class RecoveryMethodDeleteView(DeleteView):
+class RecoveryMethodDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.RecoveryMethod
     template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
+    permission_required = 'complaints.delete_recovery_method'
 
 
 # TODO: maybe add backdate complaint
 # Detail views
-class FailureNodeDetailView(DetailView):
+class FailureNodeDetailView(LoginRequiredMixin, DetailView):
     model = models.FailureNode
     template_name = 'complaints/complaints_detail.html'
     context_object_name = 'complaint'
 
 
-class RecoveryMethodDetailView(DetailView):
+class RecoveryMethodDetailView(LoginRequiredMixin, DetailView):
     model = models.RecoveryMethod
     template_name = 'complaints/complaints_detail.html'
     context_object_name = 'complaint'
 
 
-class ComplaintDetailView(DetailView):
+class ComplaintDetailView(LoginRequiredMixin, DetailView):
     model = models.Complaint
     template_name = 'complaints/complaints_detail.html'
     context_object_name = 'complaint'
 
 
 # List views
-class FailureNodeListView(ListView):
+class FailureNodeListView(LoginRequiredMixin, ListView):
     model = models.FailureNode
     template_name = 'complaints/complaints_list.html'
     context_object_name = 'complaints'
 
 
-class RecoveryMethodListView(ListView):
+class RecoveryMethodListView(LoginRequiredMixin, ListView):
     model = models.RecoveryMethod
     template_name = 'complaints/complaints_list.html'
     context_object_name = 'complaints'
 
 
-class ComplaintListView(ListView):
+class ComplaintListView(LoginRequiredMixin, ListView):
     model = models.Complaint
     template_name = 'complaints/complaints_list.html'
     context_object_name = 'complaints'

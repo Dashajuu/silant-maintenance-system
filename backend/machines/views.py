@@ -14,11 +14,11 @@ from complaints.models import Complaint
 
 
 # Create view
-# TODO: норм ли сделать функцию фабрику для крад вьюшек?
-class MachineTypeCreateView(CreateView):
+class MachineTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = make_reference_item_form(models.MachineType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.add_machine_type'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -26,10 +26,11 @@ class MachineTypeCreateView(CreateView):
         return context
 
 
-class EngineTypeCreateView(CreateView):
+class EngineTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = make_reference_item_form(models.EngineType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.add_engine_type'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -37,10 +38,11 @@ class EngineTypeCreateView(CreateView):
         return context
 
 
-class TransmissionTypeCreateView(CreateView):
+class TransmissionTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = make_reference_item_form(models.TransmissionType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.add_transmission_type'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -48,10 +50,11 @@ class TransmissionTypeCreateView(CreateView):
         return context
 
 
-class DriveAxleTypeCreateView(CreateView):
+class DriveAxleTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = make_reference_item_form(models.DriveAxleType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.add_drive_axle_type'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -59,10 +62,11 @@ class DriveAxleTypeCreateView(CreateView):
         return context
 
 
-class SteerAxleTypeCreateView(CreateView):
+class SteerAxleTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = make_reference_item_form(models.SteerAxleType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.add_steer_axle_type'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -83,64 +87,72 @@ class MachineCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView)
 
 
 # Update views
-class MachineTypeUpdateView(UpdateView):
+class MachineTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.MachineType
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.change_machine_type'
 
 
-class EngineTypeUpdateView(UpdateView):
+class EngineTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.EngineType
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.change_engine_type'
 
 
-class TransmissionTypeUpdateView(UpdateView):
+class TransmissionTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.TransmissionType
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.change_transmission_type'
 
 
-class DriveAxleTypeUpdateView(UpdateView):
+class DriveAxleTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.DriveAxleType
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.change_drive_axle_type'
 
 
-class SteerAxleTypeUpdateView(UpdateView):
+class SteerAxleTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.SteerAxleType
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.change_steer_axle_type'
 
 
-class MachineUpdateView(UpdateView):
+class MachineUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = models.Machine
     form_class = MachineCreationForm
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.change_machine'
 
 
 # Delete views
-def delete_item_view(machine_model):
-    class ItemDeleteView(DeleteView):
+def delete_item_view(machine_model, permission_name):
+    class ItemDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
         model = machine_model
         template_name = 'machines/machines_confirm_delete.html'
         context_object_name = 'machine_delete'
         success_url = reverse_lazy('home_page')
+        permission_required = f'machines.delete_{permission_name}'
 
     return ItemDeleteView
 
 
-class MachineDeleteView(DeleteView):
+class MachineDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.Machine
     template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
+    permission_required = 'machines.delete_machine'
 
 
 
@@ -148,14 +160,14 @@ class MachineDeleteView(DeleteView):
 
 # factory function for items' detail views
 def create_detail_view(item_model, item_template_name, item_context_object_name):
-    class ItemDetailView(DetailView):
+    class ItemDetailView(LoginRequiredMixin, DetailView):
         model = item_model
         template_name = item_template_name
         context_object_name = item_context_object_name
     return ItemDetailView
 
 
-class MachineDetailView(DetailView):
+class MachineDetailView(LoginRequiredMixin, DetailView):
     model = models.Machine
     template_name = 'machines/machines_detail.html'
     context_object_name = 'machine'
@@ -171,7 +183,7 @@ class MachineDetailView(DetailView):
 
 # factory function for items' list views
 def create_list_view(item_model, item_template_name, item_context_object_name):
-    class ItemListView(DetailView):
+    class ItemListView(LoginRequiredMixin, DetailView):
         model = item_model
         template_name = item_template_name
         context_object_name = item_context_object_name
