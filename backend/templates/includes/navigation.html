@@ -1,14 +1,41 @@
 {% load static %}
 
+    {% if user.is_authenticated %}
+        <div class="btn-navigation">
+            <div class="contact-navigation">
+                {% if user.groups.first.name == "managers" %}
+                    <a href="{% url 'manager_detail' user.manager.pk %}">Профиль</a>
+                {% elif user.groups.first.name == "clients" %}
+                    <a href="{% url 'client_detail' user.client.pk %}">Профиль</a>
+                {% elif user.groups.first.name == "service_companies" %}
+                    <a href="{% url 'detail_service_company' user.servicecompany.pk %}">Профиль</a>
+                {% elif user.groups.first.name == "service_masters" %}
+                    <a href="{% url 'service_master_detail' user.servicemaster.pk %}">Профиль</a>
+                {% elif user.groups.first.name == "contact_person" %}
+                    <a href="{% url 'contact_person_detail' user.contactperson.pk %}">Профиль</a>
+                {% endif %}
+            </div>
+            {% if user.groups.first.name == "managers" %}
+                <div class="auth-navigation">
+                    <a href="{% url 'mangers_catalog' %}">Справочники</a>
+                </div>
+            {% elif user.groups.first.name == "service_companies" %}
+                <div class="auth-navigation">
+                    <a href="#">CRM</a>
+                </div>
+            {% endif %}
+        </div>
+    {% else %}
+        <div class="logo-navigation-left">
+        </div>
+    {% endif %}
 
-    <div class="left-navigation">
-    </div>
-    <!-- not login -->
     <div class="logo-navigation" >
         <a href="{% url 'list_machine' %}">
             <img src="{% static 'images/Logotype.jpg' %}" alt="Логотип СИЛАНТ"/>
         </a>
     </div>
+
     <div class="btn-navigation">
         <div class="contact-navigation">
             <a href="">

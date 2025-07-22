@@ -261,11 +261,11 @@
                             <td class="machine-table__cell">
                                 <a href="#">{{ complaint.operating_hours }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ complaint.failure_node }}</a></td>
+                                <a href="{% url 'detail_failure_node' complaint.failure_node.pk %}">{{ complaint.failure_node }}</a></td>
                             <td class="machine-table__cell">
                                 <a href="#">{{ complaint.failure_node_description }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ complaint.recovery_method }}</a></td>
+                                <a href="{% url 'detail_recovery_method' complaint.recovery_method.pk %}">{{ complaint.recovery_method }}</a></td>
                             <td class="machine-table__cell">
                                 <a href="#">{{ complaint.used_spare_parts }}</a></td>
                             <td class="machine-table__cell">

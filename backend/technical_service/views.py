@@ -132,8 +132,14 @@ class MaintenanceDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteV
 # Detail views
 class MaintenanceTypeDetailView(LoginRequiredMixin, DetailView):
     model = models.MaintenanceType
-    template_name = 'machines/machines_items_detail.html'
+    template_name = 'technical_service/technical_service_maintenance_type.html'
     context_object_name = 'item'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Вид ТО'
+        context['items_name'] = 'maintenance_type'
+        return context
 
 
 class MaintenanceDetailView(LoginRequiredMixin, DetailView):

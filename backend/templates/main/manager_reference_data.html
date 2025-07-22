@@ -1,0 +1,341 @@
+{% extends 'default.html' %}
+
+{% load static %}
+
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/manager_reference.css' %}" />
+{% endblock %}
+
+{% block title %}Справочники{% endblock %}
+
+{% block main %}
+  <main>
+    <div class="reference-left">
+    </div>
+
+    <div class="reference-center">
+          <div class="managed-block">
+            <div class="managed-header">
+              <a href="#">
+                Модель техники
+              </a>
+            </div>
+            <div class="managed-list">
+              <div class="reference-btns">
+                <a href="{% url 'create_machine_type' %}">
+                  Добавить модель техники
+                </a>
+              </div>
+                <div class="managed-object">
+                    <table class="machine-table">
+                      <thead class="machine-table__head">
+                        <tr class="machine-table__row machine-table__row--head">
+                          <td class="machine-table__cell machine-table__cell--head">Название</td>
+                          <td class="machine-table__cell machine-table__cell--head">Описание</td>
+                          <td class="machine-table__cell machine-table__cell--head"></td>
+                          <td class="machine-table__cell machine-table__cell--head"></td>
+                        </tr>
+                      </thead>
+                      <tbody class="machine-table__body">
+                        {% for machine in machine_type %}
+                          <td class="machine-table__cell">
+                                <a href="{% url 'detail_machine_type' machine.pk %}">{{ machine.name }}</a></td>
+                          <td class="machine-table__cell">
+                                {{ machine.description }} </td>
+                          <td class="machine-table__cell">
+                                <a href="{% url 'update_machine_type' machine.pk %}">Редактировать</a></td>
+                          <td class="machine-table__cell">
+                                <a href="{% url 'delete_machine_type' machine.pk %}">Удалить</a></td>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+
+          <div class="managed-block">
+                <div class="managed-header">
+                  <a href="#">
+                    Модель двигателя
+                  </a>
+                </div>
+                <div class="managed-list">
+                  <div class="reference-btns">
+                    <a href="{% url 'create_engine_type' %}">
+                      Добавить модель двигателя
+                    </a>
+                  </div>
+                    <div class="managed-object">
+                        <table class="machine-table">
+                          <thead class="machine-table__head">
+                            <tr class="machine-table__row machine-table__row--head">
+                              <td class="machine-table__cell machine-table__cell--head">Название</td>
+                              <td class="machine-table__cell machine-table__cell--head">Описание</td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                            </tr>
+                          </thead>
+                          <tbody class="machine-table__body">
+                            {% for engine in engine_type %}
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'detail_engine_type' engine.pk %}">{{ engine.name }}</a></td>
+                              <td class="machine-table__cell">
+                                    {{ engine.description }} </td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'update_engine_type' engine.pk %}">Редактировать</a></td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'delete_engine_type' engine.pk %}">Удалить</a></td>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+          </div>
+
+          <div class="managed-block">
+                <div class="managed-header">
+                  <a href="#">
+                    Модель трансмиссии
+                  </a>
+                </div>
+                <div class="managed-list">
+                  <div class="reference-btns">
+                    <a href="{% url 'create_transmission_type' %}">
+                      Добавить модель трансмиссии
+                    </a>
+                  </div>
+                    <div class="managed-object">
+                        <table class="machine-table">
+                          <thead class="machine-table__head">
+                            <tr class="machine-table__row machine-table__row--head">
+                              <td class="machine-table__cell machine-table__cell--head">Название</td>
+                              <td class="machine-table__cell machine-table__cell--head">Описание</td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                            </tr>
+                          </thead>
+                          <tbody class="machine-table__body">
+                            {% for transmission in transmission_type %}
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'detail_transmission_type' transmission.pk %}">{{ transmission.name }}</a></td>
+                              <td class="machine-table__cell">
+                                    {{ transmission.description }} </td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'update_transmission_type' transmission.pk %}">Редактировать</a></td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'delete_transmission_type' transmission.pk %}">Удалить</a></td>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+          </div>
+
+          <div class="managed-block">
+                <div class="managed-header">
+                  <a href="#">
+                    Модель ведущего моста
+                  </a>
+                </div>
+                <div class="managed-list">
+                  <div class="reference-btns">
+                    <a href="{% url 'create_drive_axle_type' %}">
+                      Добавить модель ведущего моста
+                    </a>
+                  </div>
+                    <div class="managed-object">
+                        <table class="machine-table">
+                          <thead class="machine-table__head">
+                            <tr class="machine-table__row machine-table__row--head">
+                              <td class="machine-table__cell machine-table__cell--head">Название</td>
+                              <td class="machine-table__cell machine-table__cell--head">Описание</td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                            </tr>
+                          </thead>
+                          <tbody class="machine-table__body">
+                            {% for drive_axle in drive_axle_type %}
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'detail_drive_axle_type' drive_axle.pk %}">{{ drive_axle.name }}</a></td>
+                              <td class="machine-table__cell">
+                                    {{ drive_axle.description }} </td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'update_drive_axle_type' drive_axle.pk %}">Редактировать</a></td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'delete_drive_axle_type' drive_axle.pk %}">Удалить</a></td>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+          </div>
+
+          <div class="managed-block">
+                <div class="managed-header">
+                  <a href="#">
+                    Модель управляемого моста
+                  </a>
+                </div>
+                <div class="managed-list">
+                  <div class="reference-btns">
+                    <a href="{% url 'create_steer_axle_type' %}">
+                      Добавить модель управляемого моста
+                    </a>
+                  </div>
+                    <div class="managed-object">
+                        <table class="machine-table">
+                          <thead class="machine-table__head">
+                            <tr class="machine-table__row machine-table__row--head">
+                              <td class="machine-table__cell machine-table__cell--head">Название</td>
+                              <td class="machine-table__cell machine-table__cell--head">Описание</td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                            </tr>
+                          </thead>
+                          <tbody class="machine-table__body">
+                            {% for steer_axle in steer_axle_type %}
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'detail_steer_axle_type' steer_axle.pk %}">{{ steer_axle.name }}</a></td>
+                              <td class="machine-table__cell">
+                                    {{ steer_axle.description }} </td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'update_steer_axle_type' steer_axle.pk %}">Редактировать</a></td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'delete_steer_axle_type' steer_axle.pk %}">Удалить</a></td>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+          </div>
+
+          <div class="managed-block">
+                <div class="managed-header">
+                  <a href="#">
+                    Вид ТО
+                  </a>
+                </div>
+                <div class="managed-list">
+                  <div class="reference-btns">
+                    <a href="{% url 'create_maintenance_type' %}">
+                      Добавить вид ТО
+                    </a>
+                  </div>
+                    <div class="managed-object">
+                        <table class="machine-table">
+                          <thead class="machine-table__head">
+                            <tr class="machine-table__row machine-table__row--head">
+                              <td class="machine-table__cell machine-table__cell--head">Название</td>
+                              <td class="machine-table__cell machine-table__cell--head">Описание</td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                            </tr>
+                          </thead>
+                          <tbody class="machine-table__body">
+                            {% for maintenance in maintenance_type %}
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'detail_maintenance_type' maintenance.pk %}">{{ maintenance.name }}</a></td>
+                              <td class="machine-table__cell">
+                                    {{ maintenance.description }} </td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'edit_maintenance_type' maintenance.pk %}">Редактировать</a></td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'delete_maintenance_type' maintenance.pk %}">Удалить</a></td>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+          </div>
+
+          <div class="managed-block">
+                <div class="managed-header">
+                  <a href="#">
+                    Узел отказа
+                  </a>
+                </div>
+                <div class="managed-list">
+                  <div class="reference-btns">
+                    <a href="{% url 'create_failure_node' %}">
+                      Добавить узел отказа
+                    </a>
+                  </div>
+                    <div class="managed-object">
+                        <table class="machine-table">
+                          <thead class="machine-table__head">
+                            <tr class="machine-table__row machine-table__row--head">
+                              <td class="machine-table__cell machine-table__cell--head">Название</td>
+                              <td class="machine-table__cell machine-table__cell--head">Описание</td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                            </tr>
+                          </thead>
+                          <tbody class="machine-table__body">
+                            {% for failure_node in failure_nodes %}
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'detail_failure_node' failure_node.pk %}">{{ failure_node.name }}</a></td>
+                              <td class="machine-table__cell">
+                                    {{ failure_node.description }} </td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'update_failure_node' failure_node.pk %}">Редактировать</a></td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'delete_failure_node' failure_node.pk %}">Удалить</a></td>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+          </div>
+
+        <div class="managed-block">
+                <div class="managed-header">
+                  <a href="#">
+                    Способ восстановления
+                  </a>
+                </div>
+                <div class="managed-list">
+                  <div class="reference-btns">
+                    <a href="{% url 'create_recovery_method' %}">
+                      Добавить способ восстановления
+                    </a>
+                  </div>
+                    <div class="managed-object">
+                        <table class="machine-table">
+                          <thead class="machine-table__head">
+                            <tr class="machine-table__row machine-table__row--head">
+                              <td class="machine-table__cell machine-table__cell--head">Название</td>
+                              <td class="machine-table__cell machine-table__cell--head">Описание</td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                              <td class="machine-table__cell machine-table__cell--head"></td>
+                            </tr>
+                          </thead>
+                          <tbody class="machine-table__body">
+                            {% for recovery_method in recovery_methods %}
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'detail_recovery_method' recovery_method.pk %}">{{ recovery_method.name }}</a></td>
+                              <td class="machine-table__cell">
+                                    {{ recovery_method.description }} </td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'update_recovery_method' recovery_method.pk %}">Редактировать</a></td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'delete_recovery_method' recovery_method.pk %}">Удалить</a></td>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+          </div>
+
+    </div>
+    <div class="reference-right">
+    </div>
+  </main>
+    <script>
+      document.querySelectorAll('.managed-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const block = header.parentElement;
+          block.classList.toggle('active');
+        });
+      });
+    </script>
+{% endblock %}

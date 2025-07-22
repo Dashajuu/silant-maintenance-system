@@ -9,8 +9,6 @@ from . import models
 from machines.forms import make_reference_item_form
 
 
-# TODO: пересмотреть шаблоны - изменить или сделать дефолтные для всех
-
 # Create view
 class FailureNodeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = make_reference_item_form(models.FailureNode)
@@ -136,11 +134,23 @@ class FailureNodeDetailView(LoginRequiredMixin, DetailView):
     template_name = 'complaints/complaints_detail.html'
     context_object_name = 'complaint'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Узел отказа'
+        context['items_name'] = 'failure_node'
+        return context
+
 
 class RecoveryMethodDetailView(LoginRequiredMixin, DetailView):
     model = models.RecoveryMethod
     template_name = 'complaints/complaints_detail.html'
     context_object_name = 'complaint'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Способ восстановления'
+        context['items_name'] = 'recovery_method'
+        return context
 
 
 class ComplaintDetailView(LoginRequiredMixin, DetailView):

@@ -6,32 +6,26 @@
 
 {% block head_link %}
     <link rel="stylesheet" href="{% static 'css/machines-item.css' %}" />
-    <style>
-      .machines-item-btns a {
-        margin-right: 3rem;
-      }
-    </style>
 {% endblock %}
 
-{% block title %}{{ title }}: {{ complaint.name }}{% endblock %}
+{% block title %}{{ title }}: {{ item.name }}{% endblock %}
 
 {% block main %}
   <main>
     <div class="machines-item-left"></div>
     <div class="machines-item-center">
       <div class="machines-item-title">
-        <h2>{{ title }}: {{ complaint.name }}</h2>
+        <h2>{{ title }}: {{ item.name }}</h2>
       </div>
       <div class="machines-item-description">
-        <p>{{ complaint.description }}</p>
+        <p>{{ item.description }}</p>
       </div>
-      {% has_model_perm 'add' items_name as can_add %}
-      {% if can_add %}
+      {% if perms.technical_service.add_maintenance_type %}
         <div class="machines-item-btns">
-          <a href="{% dynamic_url 'update' items_name complaint.pk %}">
+          <a href="{% dynamic_url 'edit' items_name item.pk %}">
             Редактировать
           </a>
-          <a href="{% dynamic_url 'delete' items_name complaint.pk %}">
+          <a href="{% dynamic_url 'delete' items_name item.pk %}">
             Удалить
           </a>
         </div>

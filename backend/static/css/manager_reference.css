@@ -1,0 +1,119 @@
+main {
+    display: grid;
+    grid-template-columns: 1fr 70rem 1fr;
+    background-color: #FFFFFF;
+    position: relative;
+    margin-top: 3rem;
+    font-family: 'PT Astra Sans';
+    color: #163E6C;
+}
+
+
+.managed-block.active .managed-list {
+    display: block;
+}
+
+.managed-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.managed-list {
+    display: none;
+}
+
+.managed-object {
+    padding-bottom: 0.5rem;
+    padding-right: 1.7rem;
+    margin-bottom: 0.5rem;
+
+}
+
+.managed-object a {
+    text-decoration: none;
+    color: #163E6C;
+}
+
+.managed-header a {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #163E6C;
+}
+
+.managed-object a:hover,
+.managed-header a:hover {
+    color: #D20A11;
+}
+
+.machine-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.machine-table__head {
+    background-color: #f2f2f2;
+}
+
+.machine-table__row--head {
+    font-weight: bold;
+    text-align: left;
+}
+
+.machine-table__row:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.machine-table__row:hover {
+    background-color: #f0f0f0;
+}
+
+.machine-table__cell,
+.machine-table__cell--head {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.machine-table__cell a {
+    text-decoration: none;
+    color: #163E6C;
+}
+
+.machine-table__cell a:hover {
+    color: #D20A11;
+}
+
+.reference-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.reference-btns a {
+    display: inline-block;
+    background-color: #163E6C;
+    width: 15rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-family: 'PT Astra Sans';
+    font-size: 0.7rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    border-color: #163E6C;
+    border-width: 0.01rem;
+    border-radius: 0.2rem;
+    text-align: center;
+}
+
+.reference-btns a:hover {
+    background-color: #D20A11;
+    border-color: #D20A11;
+}

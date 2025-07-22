@@ -18,7 +18,7 @@ class MachineTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateV
     form_class = make_reference_item_form(models.MachineType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.add_machine_type'
+    permission_required = 'machines.add_machinetype'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -30,7 +30,7 @@ class EngineTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateVi
     form_class = make_reference_item_form(models.EngineType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.add_engine_type'
+    permission_required = 'machines.add_enginetype'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -42,7 +42,7 @@ class TransmissionTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, Cr
     form_class = make_reference_item_form(models.TransmissionType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.add_transmission_type'
+    permission_required = 'machines.add_transmissiontype'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -54,7 +54,7 @@ class DriveAxleTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, Creat
     form_class = make_reference_item_form(models.DriveAxleType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.add_drive_axle_type'
+    permission_required = 'machines.add_driveaxletype'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -66,7 +66,7 @@ class SteerAxleTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, Creat
     form_class = make_reference_item_form(models.SteerAxleType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.add_steer_axle_type'
+    permission_required = 'machines.add_steeraxletype'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -92,7 +92,7 @@ class MachineTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateV
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.change_machine_type'
+    permission_required = 'machines.change_machinetype'
 
 
 class EngineTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -100,7 +100,7 @@ class EngineTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateVi
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.change_engine_type'
+    permission_required = 'machines.change_enginetype'
 
 
 class TransmissionTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -108,7 +108,7 @@ class TransmissionTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Up
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.change_transmission_type'
+    permission_required = 'machines.change_transmissiontype'
 
 
 class DriveAxleTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -116,7 +116,7 @@ class DriveAxleTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Updat
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.change_drive_axle_type'
+    permission_required = 'machines.change_driveaxletype'
 
 
 class SteerAxleTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -124,7 +124,7 @@ class SteerAxleTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Updat
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'machines.change_steer_axle_type'
+    permission_required = 'machines.change_steeraxletype'
 
 
 class MachineUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
