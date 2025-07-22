@@ -35,12 +35,12 @@
             </div>
             <div class="tab-pane" id="title-to">
                 <div class="machine-search-title">
-                    <h2>Общая информация по ТО</h2>
+                    <h2>ТО по технике №{{ machine.machine_serial_number }}</h2>
                 </div>
             </div>
             <div class="tab-pane" id="title-claims">
                 <div class="machine-search-title">
-                  <h2>Общая информация по рекламации</h2>
+                  <h2>Рекламации по технике №{{ machine.machine_serial_number }}</h2>
                 </div>
             </div>
           <div class="tab-pane active" id="info">
@@ -159,14 +159,6 @@
                 </tr>
                 <tr>
                     <td class="machine-table-head">
-                        Адрес поставки
-                    </td>
-                    <td class="machine-table-data">
-                        {{ machine.operating_address }}
-                    </td>
-                </tr>
-                <tr>
-                    <td class="machine-table-head">
                         Комплектация
                     </td>
                     <td class="machine-table-data">
@@ -193,6 +185,14 @@
           </div>
 
           <div class="tab-pane" id="to">
+            <div class="tab-btns">
+                  <a href="{% url 'create_backdate_maintenance' %}">
+                      Добавить проведенное ТО
+                  </a>
+                  <a href="{% url 'create_maintenance_request' %}">
+                      Запросить ТО
+                  </a>
+            </div>
             <table class="machine-table">
                 <thead class="machine-table__head">
                     <tr class="machine-table__row machine-table__row--head">
@@ -229,6 +229,16 @@
           </div>
 
           <div class="tab-pane" id="claims">
+            {% if perms.complaints.add_complaint %}
+                <div class="tab-btns">
+                      <a href="{% url 'create_backdate_maintenance' %}">
+                          Добавить проведенные рекламации
+                      </a>
+                      <a href="{% url 'create_maintenance_request' %}">
+                          Создать рекламацию
+                      </a>
+                </div>
+            {% endif %}
             <table class="machine-table">
                 <thead class="machine-table__head">
                     <tr class="machine-table__row machine-table__row--head">

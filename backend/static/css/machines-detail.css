@@ -55,3 +55,34 @@
 tr:nth-child(even) {
     background-color: #fafafa;
 }
+
+.tab-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.tab-btns a {
+    display: inline-block;
+    background-color: #163E6C;
+    width: 15rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-family: 'PT Astra Sans';
+    font-size: 0.7rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    border-color: #163E6C;
+    border-width: 0.01rem;
+    border-radius: 0.2rem;
+    text-align: center;
+}
+
+.tab-btns a:hover {
+    background-color: #D20A11;
+    border-color: #D20A11;
+}

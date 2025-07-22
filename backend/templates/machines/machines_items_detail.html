@@ -1,10 +1,37 @@
 {% extends 'default.html' %}
 
+{% load static %}
 
-{% block head_title %}Item {% endblock %}
+{% load url_helpers %}
 
-{% block head %}
-<p>
-  {{ item.name }}
-</p>
-{% endblock head %}
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/machines-item.css' %}" />
+{% endblock %}
+
+{% block title %}{{ title }}: {{ item.name }}{% endblock %}
+
+{% block main %}
+  <main>
+    <div class="machines-item-left"></div>
+    <div class="machines-item-center">
+      <div class="machines-item-title">
+        <h2>{{ title }}: {{ item.name }}</h2>
+      </div>
+      <div class="machines-item-description">
+        <p>{{ item.description }}</p>
+      </div>
+      {% has_model_perm 'add' items_name as can_add %}
+      {% if can_add %}
+        <div class="machines-item-btns">
+          <a href="{% dynamic_url 'update' items_name item.pk %}">
+            Редактировать
+          </a>
+          <a href="{% dynamic_url 'delete' items_name item.pk %}">
+            Удалить
+          </a>
+        </div>
+      {% endif %}
+    </div>
+    <div class="machines-item-right"></div>
+  </main>
+{% endblock %}

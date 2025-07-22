@@ -11,6 +11,10 @@ Client:
 login: default_client
 password: HER-4wN-wzU-E9f
 
+2. ИП Трудников С.В.
+login: lemanegyptology
+password: Hti1LRuarro=3sn
+
 
 Service Master:
 
@@ -24,3 +28,9 @@ Contact Person:
 1. Default contact person (id=1):
 login: default_contact_person
 password: HER-4wN-wzU-E9f
+
+
+Service Company:
+1. ООО Промышленная техника
+login: slunkfenriswolf
+password: Hti1LRuarro=3sn

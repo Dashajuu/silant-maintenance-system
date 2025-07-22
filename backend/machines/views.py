@@ -159,11 +159,18 @@ class MachineDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
 # Detail views
 
 # factory function for items' detail views
-def create_detail_view(item_model, item_template_name, item_context_object_name):
+def create_detail_view(item_model, item_template_name, item_context_object_name, title_name, items_name):
     class ItemDetailView(LoginRequiredMixin, DetailView):
         model = item_model
         template_name = item_template_name
         context_object_name = item_context_object_name
+
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['title'] = title_name
+            context['items_name'] = items_name
+            return context
+
     return ItemDetailView
 
 
