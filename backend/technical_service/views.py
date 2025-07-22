@@ -14,7 +14,7 @@ class MaintenanceTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, Cre
     form_class = make_reference_item_form(models.MaintenanceType)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'technical_service.add_maintenance_type'
+    permission_required = 'technical_service.add_maintenancetype'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -64,7 +64,7 @@ class MaintenanceTypeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Upd
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'technical_service.change_maintenance_type'
+    permission_required = 'technical_service.change_maintenancetype'
 
 
 # Report from service on maintenance request
@@ -117,7 +117,7 @@ class MaintenanceTypeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, Del
     template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
-    permission_required = 'technical_service.delete_maintenance_type'
+    permission_required = 'technical_service.delete_maintenancetype'
 
 
 class MaintenanceDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):

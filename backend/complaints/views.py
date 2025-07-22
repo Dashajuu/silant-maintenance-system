@@ -14,7 +14,7 @@ class FailureNodeCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateV
     form_class = make_reference_item_form(models.FailureNode)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'complaints.add_failure_node'
+    permission_required = 'complaints.add_failurenode'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -26,7 +26,7 @@ class RecoveryMethodCreateView(LoginRequiredMixin, PermissionRequiredMixin, Crea
     form_class = make_reference_item_form(models.RecoveryMethod)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'complaints.add_recovery_method'
+    permission_required = 'complaints.add_recoverymethod'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -91,7 +91,7 @@ class FailureNodeUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateV
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'complaints.change_failure_node'
+    permission_required = 'complaints.change_failurenode'
 
 
 class RecoveryMethodUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -99,7 +99,7 @@ class RecoveryMethodUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Upda
     form_class = make_reference_item_form(model)
     template_name = 'machines/machines_items_create.html'
     success_url = reverse_lazy('home_page')
-    permission_required = 'complaints.change_recovery_method'
+    permission_required = 'complaints.change_recoverymethod'
 
 
 # Delete views
@@ -116,7 +116,7 @@ class FailureNodeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteV
     template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
-    permission_required = 'complaints.delete_failure_node'
+    permission_required = 'complaints.delete_failurenode'
 
 
 class RecoveryMethodDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
@@ -124,7 +124,7 @@ class RecoveryMethodDeleteView(LoginRequiredMixin, PermissionRequiredMixin, Dele
     template_name = 'machines/machines_confirm_delete.html'
     context_object_name = 'machine_delete'
     success_url = reverse_lazy('home_page')
-    permission_required = 'complaints.delete_recovery_method'
+    permission_required = 'complaints.delete_recoverymethod'
 
 
 # TODO: maybe add backdate complaint

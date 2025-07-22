@@ -45,7 +45,7 @@ class ServiceMasterCreateView(LoginRequiredMixin, PermissionRequiredMixin, Creat
     form_class = ServiceMasterCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
-    permission_required = 'accounts.add_service_master'
+    permission_required = 'accounts.add_servicemaster'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -112,7 +112,7 @@ class ServiceMasterUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Updat
     model = ServiceMaster
     form_class = make_custom_update_form(model, 'position', 'service_company')
     template_name = 'accounts/accounts_create.html'
-    permission_required = 'accounts.change_service_master'
+    permission_required = 'accounts.change_servicemaster'
 
     def get_success_url(self):
         return reverse_lazy('service_master_detail', kwargs={'pk': self.object.pk})
@@ -128,7 +128,7 @@ class ContactPersonUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Updat
     form_class = make_custom_update_form(model, 'service_company')
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
-    permission_required = 'accounts.change_contact_person'
+    permission_required = 'accounts.change_contactperson'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -141,7 +141,7 @@ class ServiceCompanyUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Upda
     form_class = make_custom_update_form(model, 'name', 'description')
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
-    permission_required = 'accounts.change_service_company'
+    permission_required = 'accounts.change_servicecompany'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
