@@ -72,14 +72,16 @@
                   {% endif %}
               </div>
 
-              <div class="profile-btns">
-                  <a href="{% url 'update_client' account.pk %}" class="profile-btn">
-                      Редактировать
-                  </a>
-                  <a href="{% url 'delete_account' account.user.pk %}" class="profile-btn btn-delete">
-                      Удалить
-                  </a>
-              </div>
+              {% if perms.accounts.change_client or perm.accounts.delete_account %}
+                  <div class="profile-btns">
+                      <a href="{% url 'update_client' account.pk %}" class="profile-btn">
+                          Редактировать
+                      </a>
+                      <a href="{% url 'delete_account' account.user.pk %}" class="profile-btn btn-delete">
+                          Удалить
+                      </a>
+                  </div>
+              {% endif %}
         </div>
 
         <div class="managed-entities">

@@ -201,7 +201,7 @@ class ContactPersonProfileDetailView(LoginRequiredMixin, DetailView):
 # TODO: add profile page + template
 class ServiceCompanyProfileDetailView(LoginRequiredMixin, DetailView):
     model = ServiceCompany
-    template_name = 'accounts/accounts_service_master_detail.html'
+    template_name = 'accounts/accounts_service_company_detail.html'
     context_object_name = 'account'
 
 

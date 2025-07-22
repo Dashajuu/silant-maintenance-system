@@ -1,5 +1,6 @@
 {% extends 'default.html' %}
 
+
 {% load static %}
 
 
@@ -73,12 +74,14 @@
               </div>
 
               <div class="profile-btns">
-                  <a href="{% url 'update_service_master' account.pk %}" class="profile-btn">
-                      Редактировать
-                  </a>
-                  <a href="{% url 'delete_account' account.user.pk %}" class="profile-btn btn-delete">
-                      Удалить
-                  </a>
+                  {% if perms.accounts.change_service_master or perm.accounts.delete_account %}
+                      <a href="{% url 'update_service_master' account.pk %}" class="profile-btn">
+                          Редактировать
+                      </a>
+                      <a href="{% url 'delete_account' account.user.pk %}" class="profile-btn btn-delete">
+                          Удалить
+                      </a>
+                  {% endif %}
               </div>
         </div>
 
