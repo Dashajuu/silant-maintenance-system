@@ -43,7 +43,7 @@
                             {% for maintenance in maintenances %}
                                 <tr class="machine-table__row">
                                     <td class="machine-table__cell">
-                                        <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.maintenance_type }}</a></td>
+                                        <a href="{% url 'detail_maintenance_type' maintenance.maintenance_type.pk %}">{{ maintenance.maintenance_type }}</a></td>
                                     <td class="machine-table__cell">
                                         <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.maintenance_date }}</a></td>
                                     <td class="machine-table__cell">

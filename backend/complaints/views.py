@@ -155,7 +155,7 @@ class RecoveryMethodDetailView(LoginRequiredMixin, DetailView):
 
 class ComplaintDetailView(LoginRequiredMixin, DetailView):
     model = models.Complaint
-    template_name = 'complaints/complaints_detail.html'
+    template_name = 'complaints/complaints_complaint_detail.html'
     context_object_name = 'complaint'
 
 

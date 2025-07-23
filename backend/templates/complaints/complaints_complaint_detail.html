@@ -1,0 +1,123 @@
+{% extends 'default.html' %}
+
+{% load static %}
+
+
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/machines-detail.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/machines_list.css' %}" />
+{% endblock %}
+
+{% block title %}Информация о рекламации для машины {{ complaint.machine.machine_serial_number }}{% endblock %}
+
+{% block main %}
+  <main>
+    <div class="machine-search-left"></div>
+
+    <div class="machine-search-center">
+        <div class="machine-detail-title">
+            <div class="machine-detail-title-1">Информация о рекламации для машины {{ complaint.machine.machine_serial_number }}:</div>
+            <div class="machine-detail-title-bold">{{ complaint.failure_node }}</div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="title-info">
+                <table class="machines-table">
+                  <tr>
+                      <td class="machine-table-head">
+                          Дата отказа
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.failure_date }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                          Наработка, м/час
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.operating_hours }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                          Узел отказа
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.failure_node }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                        Описание отказа
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.failure_node_description }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                          Способ восстановления
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.recovery_method }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                        Используемые запасные части
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.used_spare_parts }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                        Дата восстановления
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.recovery_date }}
+                      </td>
+                  </tr>
+                    <tr>
+                      <td class="machine-table-head">
+                        Время простоя техники
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.downtime }}
+                      </td>
+                  </tr>
+                    <tr>
+                      <td class="machine-table-head">
+                        Mашина
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.machine.machine_serial_number }}
+                      </td>
+                  </tr>
+                    <tr>
+                      <td class="machine-table-head">
+                        Cервисная компания
+                      </td>
+                      <td class="machine-table-data">
+                          {{ complaint.service_company }}
+                      </td>
+                  </tr>
+                </table>
+            </div>
+        </div>
+            {% if perms.complaints.add_complaint or perms.complaints.change_complaint %}
+                <div class="tab-btns">
+                      <a href="{% url 'update_backdate_complaint' complaint.pk %}">
+                          Редактировать
+                      </a>
+                      <a href="{% url 'delete_complaint' complaint.pk %}">
+                          Удалить
+                      </a>
+                </div>
+            {% endif %}
+    </div>
+
+    <div class="machine-search-right"></div>
+  </main>
+{% endblock %}

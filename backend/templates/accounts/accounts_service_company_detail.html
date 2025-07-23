@@ -1,5 +1,6 @@
 {% extends 'default.html' %}
 
+
 {% load static %}
 
 
@@ -8,9 +9,103 @@
 {% endblock %}
 
 
-{% block title %}{{ account.name }}{% endblock %}
+{% block title %}{{ account.user.username }}{% endblock %}
 
 
 {% block main %}
-    {{ account.name }}
+    <main>
+        <div class="profile-left">
+        </div>
+
+        <div class="profile-info">
+              <div class="profile-title">
+                  Сервисная компания
+              </div>
+
+              <div class="profile-fields">
+                  {% if account.user.username %}
+                  <div class="profile-field">
+                    <div class="field-label">Логин</div>
+                    <div class="field-value">{{ account.user.username }}</div>
+                  </div>
+                  {% endif %}
+
+                  {% if account.user.first_name %}
+                  <div class="profile-field">
+                    <div class="field-label">Имя</div>
+                    <div class="field-value">{{ account.user.first_name }}</div>
+                  </div>
+                  {% endif %}
+
+                  {% if account.user.last_name %}
+                  <div class="profile-field">
+                    <div class="field-label">Фамилия</div>
+                    <div class="field-value">{{ account.user.last_name }}</div>
+                  </div>
+                  {% endif %}
+
+                  {% if account.phone_number %}
+                  <div class="profile-field">
+                    <div class="field-label">Номер телефона</div>
+                    <div class="field-value">{{ account.phone_number }}</div>
+                  </div>
+                  {% endif %}
+
+                  {% if account.user.email %}
+                  <div class="profile-field">
+                    <div class="field-label">Email</div>
+                    <div class="field-value">{{ account.user.email }}</div>
+                  </div>
+                  {% endif %}
+
+                  {% if account.telegram %}
+                  <div class="profile-field">
+                    <div class="field-label">Телеграм</div>
+                    <div class="field-value">{{ account.telegram }}</div>
+                  </div>
+                  {% endif %}
+
+                  {% if account.name %}
+                  <div class="profile-field">
+                    <div class="field-label">Название компании</div>
+                    <div class="field-value">{{ account.name }}</div>
+                  </div>
+                  {% endif %}
+
+                  {% if account.description %}
+                  <div class="profile-field">
+                    <div class="field-label">Описание компании</div>
+                    <div class="field-value">{{ account.description }}</div>
+                  </div>
+                  {% endif %}
+              </div>
+
+              <div class="profile-btns">
+                  {% if perms.accounts.change_servicecompany or perm.accounts.delete_account %}
+                      <a href="{% url 'update_service_company' account.pk %}" class="profile-btn">
+                          Редактировать
+                      </a>
+                      <a href="{% url 'delete_account' account.user.pk %}" class="profile-btn btn-delete">
+                          Удалить
+                      </a>
+                  {% endif %}
+              </div>
+        </div>
+
+        <div class="managed-entities">
+        </div>
+
+        <div class="profile-right">
+        </div>
+      </main>
+
+        <script>
+          document.querySelectorAll('.managed-header').forEach(header => {
+            header.addEventListener('click', () => {
+              const block = header.parentElement;
+              block.classList.toggle('active');
+            });
+          });
+        </script>
+    </main>
 {% endblock %}

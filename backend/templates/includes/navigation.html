@@ -42,7 +42,7 @@
     <div class="btn-navigation">
         <div class="contact-navigation">
             {% if user.is_authenticated %}
-                <a href="">
+                <a href="{% url 'service_catalog' %}">
                     Обслуживание
                 </a>
             {% else %}

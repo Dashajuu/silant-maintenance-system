@@ -1,10 +1,99 @@
 {% extends 'default.html' %}
 
+{% load static %}
 
-{% block head_title %}Maintenance{% endblock %}
 
-{% block head %}
-<p>
-  {{ maintenance.id }}
-</p>
-{% endblock head %}
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/machines-detail.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/machines_list.css' %}" />
+{% endblock %}
+
+{% block title %}Информация о ТО для машины {{ maintenance.machine.machine_serial_number }}{% endblock %}
+
+{% block main %}
+  <main>
+    <div class="machine-search-left"></div>
+
+    <div class="machine-search-center">
+        <div class="machine-detail-title">
+            <div class="machine-detail-title-1">Информация о ТО для машины {{ maintenance.machine.machine_serial_number }}:</div>
+            <div class="machine-detail-title-bold">{{ maintenance.maintenance_type }}</div>
+        </div>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="title-info">
+                <table class="machines-table">
+                  <tr>
+                      <td class="machine-table-head">
+                          Вид ТО
+                      </td>
+                      <td class="machine-table-data">
+                          {{ maintenance.maintenance_type }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                          Дата проведения ТО
+                      </td>
+                      <td class="machine-table-data">
+                          {{ maintenance.maintenance_date }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                          	Наработка, м/час
+                      </td>
+                      <td class="machine-table-data">
+                          {{ maintenance.operating_hours }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                        № заказ-наряда
+                      </td>
+                      <td class="machine-table-data">
+                          {{ maintenance.work_order_number }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                        Дата заказ-наряда
+                      </td>
+                      <td class="machine-table-data">
+                          {{ maintenance.work_order_date }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                        Организация, проводившая ТО
+                      </td>
+                      <td class="machine-table-data">
+                          {{ maintenance.service_company }}
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="machine-table-head">
+                        Машина
+                      </td>
+                      <td class="machine-table-data">
+                          {{ maintenance.machine.machine_serial_number }}
+                      </td>
+                  </tr>
+                </table>
+            </div>
+        </div>
+            {% if perms.technical_service.add_maintenance or perms.technical_service.change_maintenance %}
+                <div class="tab-btns">
+                      <a href="{% url 'edit_backdate_maintenance' maintenance.pk %}">
+                          Редактировать
+                      </a>
+                      <a href="{% url 'delete_maintenance' maintenance.pk %}">
+                          Удалить
+                      </a>
+                </div>
+            {% endif %}
+    </div>
+
+    <div class="machine-search-right"></div>
+  </main>
+{% endblock %}
