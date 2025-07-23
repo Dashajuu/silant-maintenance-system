@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from accounts import models as account
 from machines import models as machine
 from technical_service import models as maintenance
 from complaints import models as complaint
@@ -17,3 +18,15 @@ def get_manager_context_data(request):
     }
 
     return render(request, 'main/manager_reference_data.html', context=data)
+
+
+def get_manager_accounts_context_data(request):
+    data = {
+        'managers': account.Manager.objects.all(),
+        'clients': account.Client.objects.all(),
+        'service_companies': account.ServiceCompany.objects.all(),
+        'service_masters': account.ServiceMaster.objects.all(),
+        'contact_persons': account.ContactPerson.objects.all(),
+    }
+
+    return render(request, 'main/manager_account_data.html', context=data)

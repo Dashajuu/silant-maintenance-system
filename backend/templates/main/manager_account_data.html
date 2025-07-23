@@ -1,0 +1,234 @@
+{% extends 'default.html' %}
+
+{% load static %}
+
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/manager_reference.css' %}" />
+{% endblock %}
+
+{% block title %}Аккаунты{% endblock %}
+
+{% block main %}
+  <main>
+    <div class="reference-left">
+    </div>
+      <div class="reference-center">
+          <div class="managed-block">
+            <div class="managed-header">
+              <a href="#">
+                Менеджеры
+              </a>
+            </div>
+            <div class="managed-list">
+              <div class="reference-btns">
+                <a href="{% url 'create_manager' %}">
+                  Добавить менеджера
+                </a>
+              </div>
+                <div class="managed-object">
+                    <table class="machine-table">
+                      <thead class="machine-table__head">
+                        <tr class="machine-table__row machine-table__row--head">
+                          <td class="machine-table__cell machine-table__cell--head">Логин</td>
+                          <td class="machine-table__cell machine-table__cell--head">Имя</td>
+                          <td class="machine-table__cell machine-table__cell--head">Фамилия</td>
+                          <td class="machine-table__cell machine-table__cell--head">Телефон</td>
+                          <td class="machine-table__cell machine-table__cell--head">Почта</td>
+                          <td class="machine-table__cell machine-table__cell--head">Телеграм</td>
+                          <td class="machine-table__cell machine-table__cell--head">Регион</td>
+                        </tr>
+                      </thead>
+                      <tbody class="machine-table__body">
+                        {% for manager in managers %}
+                          <tr class="machine-table__row">
+                            <td class="machine-table__cell">
+                                  <a href="{% url 'manager_detail' manager.pk %}">{{ manager.user.username }}</a></td>
+                            <td class="machine-table__cell">
+                                  {{ manager.user.first_name }} </td>
+                            <td class="machine-table__cell">
+                                  {{ manager.user.last_name }} </td>
+                            <td class="machine-table__cell">
+                                  {{ manager.phone_number }} </td>
+                            <td class="machine-table__cell">
+                                  {{ manager.email }} </td>
+                            <td class="machine-table__cell">
+                                  {{ manager.telegram }} </td>
+                            <td class="machine-table__cell">
+                                  {{ manager.region }} </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+
+          <div class="managed-block">
+            <div class="managed-header">
+              <a href="#">
+                Клиенты
+              </a>
+            </div>
+            <div class="managed-list">
+              <div class="reference-btns">
+                <a href="{% url 'create_client' %}">
+                  Добавить клиента
+                </a>
+              </div>
+                <div class="managed-object">
+                    <table class="machine-table">
+                      <thead class="machine-table__head">
+                        <tr class="machine-table__row machine-table__row--head">
+                          <td class="machine-table__cell machine-table__cell--head">Логин</td>
+                          <td class="machine-table__cell machine-table__cell--head">Имя</td>
+                          <td class="machine-table__cell machine-table__cell--head">Фамилия</td>
+                          <td class="machine-table__cell machine-table__cell--head">Телефон</td>
+                          <td class="machine-table__cell machine-table__cell--head">Почта</td>
+                          <td class="machine-table__cell machine-table__cell--head">Телеграм</td>
+                          <td class="machine-table__cell machine-table__cell--head">Название компании</td>
+                        </tr>
+                      </thead>
+                      <tbody class="machine-table__body">
+                        {% for client in clients %}
+                          <tr class="machine-table__row">
+                            <td class="machine-table__cell">
+                                  <a href="{% url 'client_detail' client.pk %}">{{ client.user.username }}</a></td>
+                            <td class="machine-table__cell">
+                                  {{ client.user.first_name }} </td>
+                            <td class="machine-table__cell">
+                                  {{ client.user.last_name }} </td>
+                            <td class="machine-table__cell">
+                                  {{ client.phone_number }} </td>
+                            <td class="machine-table__cell">
+                                  {{ client.email }} </td>
+                            <td class="machine-table__cell">
+                                  {{ client.telegram }} </td>
+                            <td class="machine-table__cell">
+                                  {{ client.name }} </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+
+          <div class="managed-block">
+            <div class="managed-header">
+              <a href="#">
+                Сервисные компании
+              </a>
+            </div>
+            <div class="managed-list">
+              <div class="reference-btns">
+                <a href="{% url 'create_service_company' %}">
+                  Добавить сервисную компанию
+                </a>
+              </div>
+                <div class="managed-object">
+                    <table class="machine-table">
+                      <thead class="machine-table__head">
+                        <tr class="machine-table__row machine-table__row--head">
+                          <td class="machine-table__cell machine-table__cell--head">Логин</td>
+                          <td class="machine-table__cell machine-table__cell--head">Имя</td>
+                          <td class="machine-table__cell machine-table__cell--head">Фамилия</td>
+                          <td class="machine-table__cell machine-table__cell--head">Телефон</td>
+                          <td class="machine-table__cell machine-table__cell--head">Почта</td>
+                          <td class="machine-table__cell machine-table__cell--head">Телеграм</td>
+                          <td class="machine-table__cell machine-table__cell--head">Название компании</td>
+                          <td class="machine-table__cell machine-table__cell--head">Описание компании</td>
+                        </tr>
+                      </thead>
+                      <tbody class="machine-table__body">
+                        {% for service_company in service_companies %}
+                          <tr class="machine-table__row">
+                            <td class="machine-table__cell">
+                                  <a href="{% url 'detail_service_company' service_company.pk %}">{{ service_company.user.username }}</a></td>
+                            <td class="machine-table__cell">
+                                  {{ service_company.user.first_name }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_company.user.last_name }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_company.phone_number }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_company.email }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_company.telegram }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_company.name }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_company.description }} </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+
+          <div class="managed-block">
+            <div class="managed-header">
+              <a href="#">
+                Мастера
+              </a>
+            </div>
+            <div class="managed-list">
+              <div class="reference-btns">
+                <a href="{% url 'create_service_company' %}">
+                  Добавить мастера
+                </a>
+              </div>
+                <div class="managed-object">
+                    <table class="machine-table">
+                      <thead class="machine-table__head">
+                        <tr class="machine-table__row machine-table__row--head">
+                          <td class="machine-table__cell machine-table__cell--head">Логин</td>
+                          <td class="machine-table__cell machine-table__cell--head">Имя</td>
+                          <td class="machine-table__cell machine-table__cell--head">Фамилия</td>
+                          <td class="machine-table__cell machine-table__cell--head">Телефон</td>
+                          <td class="machine-table__cell machine-table__cell--head">Почта</td>
+                          <td class="machine-table__cell machine-table__cell--head">Телеграм</td>
+                          <td class="machine-table__cell machine-table__cell--head">Должность</td>
+                          <td class="machine-table__cell machine-table__cell--head">Название компании</td>
+                        </tr>
+                      </thead>
+                      <tbody class="machine-table__body">
+                        {% for service_master in service_masters %}
+                          <tr class="machine-table__row">
+                            <td class="machine-table__cell">
+                                  <a href="{% url 'service_master_detail' service_master.pk %}">{{ service_master.user.username }}</a></td>
+                            <td class="machine-table__cell">
+                                  {{ service_master.user.first_name }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_master.user.last_name }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_master.phone_number }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_master.email }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_master.telegram }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_master.position }} </td>
+                            <td class="machine-table__cell">
+                                  {{ service_master.service_company }} </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+      </div>
+
+    <div class="reference-right">
+    </div>
+  </main>
+    <script>
+      document.querySelectorAll('.managed-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const block = header.parentElement;
+          block.classList.toggle('active');
+        });
+      });
+    </script>
+{% endblock %}

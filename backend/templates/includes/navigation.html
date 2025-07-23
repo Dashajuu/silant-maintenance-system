@@ -19,6 +19,9 @@
                 <div class="auth-navigation">
                     <a href="{% url 'mangers_catalog' %}">Справочники</a>
                 </div>
+                <div class="auth-navigation">
+                    <a href="{% url 'create_account' %}">Пользователи</a>
+                </div>
             {% elif user.groups.first.name == "service_companies" %}
                 <div class="auth-navigation">
                     <a href="#">CRM</a>

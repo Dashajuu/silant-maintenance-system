@@ -38,14 +38,16 @@
                       </thead>
                       <tbody class="machine-table__body">
                         {% for machine in machine_type %}
-                          <td class="machine-table__cell">
-                                <a href="{% url 'detail_machine_type' machine.pk %}">{{ machine.name }}</a></td>
-                          <td class="machine-table__cell">
-                                {{ machine.description }} </td>
-                          <td class="machine-table__cell">
-                                <a href="{% url 'update_machine_type' machine.pk %}">Редактировать</a></td>
-                          <td class="machine-table__cell">
-                                <a href="{% url 'delete_machine_type' machine.pk %}">Удалить</a></td>
+                            <tr class="machine-table__row">
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'detail_machine_type' machine.pk %}">{{ machine.name }}</a></td>
+                              <td class="machine-table__cell">
+                                    {{ machine.description }} </td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'update_machine_type' machine.pk %}">Редактировать</a></td>
+                              <td class="machine-table__cell">
+                                    <a href="{% url 'delete_machine_type' machine.pk %}">Удалить</a></td>
+                            </tr>
                         {% endfor %}
                       </tbody>
                     </table>
@@ -77,14 +79,16 @@
                           </thead>
                           <tbody class="machine-table__body">
                             {% for engine in engine_type %}
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'detail_engine_type' engine.pk %}">{{ engine.name }}</a></td>
-                              <td class="machine-table__cell">
-                                    {{ engine.description }} </td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'update_engine_type' engine.pk %}">Редактировать</a></td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'delete_engine_type' engine.pk %}">Удалить</a></td>
+                                <tr class="machine-table__row">
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'detail_engine_type' engine.pk %}">{{ engine.name }}</a></td>
+                                  <td class="machine-table__cell">
+                                        {{ engine.description }} </td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'update_engine_type' engine.pk %}">Редактировать</a></td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'delete_engine_type' engine.pk %}">Удалить</a></td>
+                                </tr>
                             {% endfor %}
                           </tbody>
                         </table>
@@ -116,14 +120,16 @@
                           </thead>
                           <tbody class="machine-table__body">
                             {% for transmission in transmission_type %}
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'detail_transmission_type' transmission.pk %}">{{ transmission.name }}</a></td>
-                              <td class="machine-table__cell">
-                                    {{ transmission.description }} </td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'update_transmission_type' transmission.pk %}">Редактировать</a></td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'delete_transmission_type' transmission.pk %}">Удалить</a></td>
+                                <tr class="machine-table__row">
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'detail_transmission_type' transmission.pk %}">{{ transmission.name }}</a></td>
+                                  <td class="machine-table__cell">
+                                        {{ transmission.description }} </td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'update_transmission_type' transmission.pk %}">Редактировать</a></td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'delete_transmission_type' transmission.pk %}">Удалить</a></td>
+                                </tr>
                             {% endfor %}
                           </tbody>
                         </table>
@@ -155,14 +161,16 @@
                           </thead>
                           <tbody class="machine-table__body">
                             {% for drive_axle in drive_axle_type %}
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'detail_drive_axle_type' drive_axle.pk %}">{{ drive_axle.name }}</a></td>
-                              <td class="machine-table__cell">
-                                    {{ drive_axle.description }} </td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'update_drive_axle_type' drive_axle.pk %}">Редактировать</a></td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'delete_drive_axle_type' drive_axle.pk %}">Удалить</a></td>
+                                <tr class="machine-table__row">
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'detail_drive_axle_type' drive_axle.pk %}">{{ drive_axle.name }}</a></td>
+                                  <td class="machine-table__cell">
+                                        {{ drive_axle.description }} </td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'update_drive_axle_type' drive_axle.pk %}">Редактировать</a></td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'delete_drive_axle_type' drive_axle.pk %}">Удалить</a></td>
+                                </tr>
                             {% endfor %}
                           </tbody>
                         </table>
@@ -194,14 +202,16 @@
                           </thead>
                           <tbody class="machine-table__body">
                             {% for steer_axle in steer_axle_type %}
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'detail_steer_axle_type' steer_axle.pk %}">{{ steer_axle.name }}</a></td>
-                              <td class="machine-table__cell">
-                                    {{ steer_axle.description }} </td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'update_steer_axle_type' steer_axle.pk %}">Редактировать</a></td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'delete_steer_axle_type' steer_axle.pk %}">Удалить</a></td>
+                                <tr class="machine-table__row">
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'detail_steer_axle_type' steer_axle.pk %}">{{ steer_axle.name }}</a></td>
+                                  <td class="machine-table__cell">
+                                        {{ steer_axle.description }} </td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'update_steer_axle_type' steer_axle.pk %}">Редактировать</a></td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'delete_steer_axle_type' steer_axle.pk %}">Удалить</a></td>
+                                </tr>
                             {% endfor %}
                           </tbody>
                         </table>
@@ -233,14 +243,16 @@
                           </thead>
                           <tbody class="machine-table__body">
                             {% for maintenance in maintenance_type %}
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'detail_maintenance_type' maintenance.pk %}">{{ maintenance.name }}</a></td>
-                              <td class="machine-table__cell">
-                                    {{ maintenance.description }} </td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'edit_maintenance_type' maintenance.pk %}">Редактировать</a></td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'delete_maintenance_type' maintenance.pk %}">Удалить</a></td>
+                                <tr class="machine-table__row">
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'detail_maintenance_type' maintenance.pk %}">{{ maintenance.name }}</a></td>
+                                  <td class="machine-table__cell">
+                                        {{ maintenance.description }} </td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'edit_maintenance_type' maintenance.pk %}">Редактировать</a></td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'delete_maintenance_type' maintenance.pk %}">Удалить</a></td>
+                                </tr>
                             {% endfor %}
                           </tbody>
                         </table>
@@ -272,14 +284,16 @@
                           </thead>
                           <tbody class="machine-table__body">
                             {% for failure_node in failure_nodes %}
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'detail_failure_node' failure_node.pk %}">{{ failure_node.name }}</a></td>
-                              <td class="machine-table__cell">
-                                    {{ failure_node.description }} </td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'update_failure_node' failure_node.pk %}">Редактировать</a></td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'delete_failure_node' failure_node.pk %}">Удалить</a></td>
+                                <tr class="machine-table__row">
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'detail_failure_node' failure_node.pk %}">{{ failure_node.name }}</a></td>
+                                  <td class="machine-table__cell">
+                                        {{ failure_node.description }} </td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'update_failure_node' failure_node.pk %}">Редактировать</a></td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'delete_failure_node' failure_node.pk %}">Удалить</a></td>
+                                </tr>
                             {% endfor %}
                           </tbody>
                         </table>
@@ -311,14 +325,16 @@
                           </thead>
                           <tbody class="machine-table__body">
                             {% for recovery_method in recovery_methods %}
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'detail_recovery_method' recovery_method.pk %}">{{ recovery_method.name }}</a></td>
-                              <td class="machine-table__cell">
-                                    {{ recovery_method.description }} </td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'update_recovery_method' recovery_method.pk %}">Редактировать</a></td>
-                              <td class="machine-table__cell">
-                                    <a href="{% url 'delete_recovery_method' recovery_method.pk %}">Удалить</a></td>
+                                <tr class="machine-table__row">
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'detail_recovery_method' recovery_method.pk %}">{{ recovery_method.name }}</a></td>
+                                  <td class="machine-table__cell">
+                                        {{ recovery_method.description }} </td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'update_recovery_method' recovery_method.pk %}">Редактировать</a></td>
+                                  <td class="machine-table__cell">
+                                        <a href="{% url 'delete_recovery_method' recovery_method.pk %}">Удалить</a></td>
+                                </tr>
                             {% endfor %}
                           </tbody>
                         </table>

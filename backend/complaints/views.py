@@ -105,24 +105,24 @@ class RecoveryMethodUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Upda
 # Delete views
 class ComplaintDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.Complaint
-    template_name = 'machines/machines_confirm_delete.html'
-    context_object_name = 'machine_delete'
+    template_name = 'complaints/complaints_confirm_delete.html'
+    context_object_name = 'complaint'
     success_url = reverse_lazy('home_page')
     permission_required = 'complaints.delete_complaint'
 
 
 class FailureNodeDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.FailureNode
-    template_name = 'machines/machines_confirm_delete.html'
-    context_object_name = 'machine_delete'
+    template_name = 'complaints/complaints_confirm_delete.html'
+    context_object_name = 'complaint'
     success_url = reverse_lazy('home_page')
     permission_required = 'complaints.delete_failurenode'
 
 
 class RecoveryMethodDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = models.RecoveryMethod
-    template_name = 'machines/machines_confirm_delete.html'
-    context_object_name = 'machine_delete'
+    template_name = 'complaints/complaints_confirm_delete.html'
+    context_object_name = 'complaint'
     success_url = reverse_lazy('home_page')
     permission_required = 'complaints.delete_recoverymethod'
 

@@ -7,7 +7,7 @@ from . import views
 
 urlpatterns = [
     # accounts' creation urls
-    path('create', views.account_creation_home, name='create_account'),
+    path('create', views.account_creation_home, name='fef'),
     path('manager/create', views.ManagerCreateView.as_view(), name="create_manager"),
     path('client/create', views.ClientCreateView.as_view(), name="create_client"),
     path('service_master/create', views.ServiceMasterCreateView.as_view(), name='create_service_master'),

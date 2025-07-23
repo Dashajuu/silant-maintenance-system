@@ -27,8 +27,8 @@ urlpatterns = [
     path('machine_type/<int:pk>/delete', views.delete_item_view(models.MachineType, 'machinetype').as_view(), name='delete_machine_type'),
     path('engine_type/<int:pk>/delete', views.delete_item_view(models.EngineType, 'enginetype').as_view(), name='delete_engine_type'),
     path('transmission_type/<int:pk>/delete', views.delete_item_view(models.TransmissionType, 'transmissiontype').as_view(), name='delete_transmission_type'),
-    path('drive_axle_type/<int:pk>/delete', views.delete_item_view(models.DriveAxleType, 'drive_axletype').as_view(), name='delete_drive_axle_type'),
-    path('steer_axle_type/<int:pk>/delete', views.delete_item_view(models.SteerAxleType, 'steer_axletype').as_view(), name='delete_steer_axle_type'),
+    path('drive_axle_type/<int:pk>/delete', views.delete_item_view(models.DriveAxleType, 'driveaxletype').as_view(), name='delete_drive_axle_type'),
+    path('steer_axle_type/<int:pk>/delete', views.delete_item_view(models.SteerAxleType, 'steeraxletype').as_view(), name='delete_steer_axle_type'),
 
     # items detail views
     path('machine_type/<int:pk>',

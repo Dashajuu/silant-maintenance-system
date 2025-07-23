@@ -38,3 +38,6 @@ class Complaint(models.Model):
     used_spare_parts = models.TextField(null=True, blank=True, verbose_name='Используемые запасные части')
     recovery_date = models.DateField(null=True, blank=True, verbose_name='Дата восстановления')
     downtime = models.CharField(max_length=25, null=True, blank=True, verbose_name='Время простоя техники')
+
+    def __str__(self):
+        return f'Рекламация №{self.pk}'
