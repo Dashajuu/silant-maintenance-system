@@ -24,4 +24,8 @@ urlpatterns = [
     path('machines/', include('machines.urls')),
     path('complaints/', include('complaints.urls')),
     path('maintenance/', include('technical_service.urls')),
+    path('api/', include('machines.urls')),
+    path('api/', include('complaints.urls')),
+    path('api/', include('technical_service.urls')),
+    path('api/', include('accounts.urls')),
 ]

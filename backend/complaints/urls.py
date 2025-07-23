@@ -1,10 +1,22 @@
 from tkinter.font import names
 
-from django.urls import path
+from django.urls import path, include
+
+from rest_framework import routers
 
 from . import views
 
+
+router = routers.DefaultRouter()
+router.register(r'complaints', views.ComplaintViewSet)
+router.register(r'failure_node', views.FailureNodeViewSet)
+router.register(r'recovery_method', views.RecoveryMethodViewSet)
+
+
 urlpatterns = [
+    # api
+    path('', include(router.urls)),
+
     # complaints' creation urls
     path('create', views.ComplaintCreateView.as_view(), name='create_complaint'),
     path('backdate_complaint/create', views.BackdateComplaintCreateView.as_view(), name='create_backdate_complaint'),

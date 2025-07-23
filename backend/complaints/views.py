@@ -4,9 +4,14 @@ from django.urls import reverse_lazy
 from django.views.generic import (CreateView, UpdateView, DeleteView,
                                   ListView, DetailView)
 
-from .forms import ComplaintCreationForm
+from rest_framework import viewsets
+
 from . import models
+
+from .forms import ComplaintCreationForm
 from machines.forms import make_reference_item_form
+
+from . import serializers
 
 
 # Create view
@@ -176,3 +181,19 @@ class ComplaintListView(LoginRequiredMixin, ListView):
     model = models.Complaint
     template_name = 'complaints/complaints_list.html'
     context_object_name = 'complaints'
+
+
+# API
+class ComplaintViewSet(viewsets.ModelViewSet):
+    queryset = models.Complaint.objects.all()
+    serializer_class = serializers.ComplaintSerializer
+
+
+class FailureNodeViewSet(viewsets.ModelViewSet):
+    queryset = models.FailureNode.objects.all()
+    serializer_class = serializers.FailureNodeSerializer
+
+
+class RecoveryMethodViewSet(viewsets.ModelViewSet):
+    queryset = models.RecoveryMethod.objects.all()
+    serializer_class = serializers.RecoveryMethodSerializer

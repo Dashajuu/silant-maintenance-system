@@ -1,11 +1,24 @@
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.conf import settings
+
+from rest_framework import routers
 
 from . import views
 
 
+router = routers.DefaultRouter()
+router.register(r'managers', views.ManagerViewSet)
+router.register(r'clients', views.ClientViewSet)
+router.register(r'service_companies', views.ServiceCompanyViewSet)
+router.register(r'service_masters', views.ServiceMasterViewSet)
+router.register(r'contact_persons', views.ContactPersonViewSet)
+
+
 urlpatterns = [
+    # api
+    path('', include(router.urls)),
+
     # accounts' creation urls
     path('create', views.account_creation_home, name='fef'),
     path('manager/create', views.ManagerCreateView.as_view(), name="create_manager"),

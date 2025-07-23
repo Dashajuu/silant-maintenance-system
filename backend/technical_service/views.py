@@ -3,10 +3,14 @@ from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMix
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
 
+from rest_framework import viewsets
+
+from . import models
 
 from .forms import MaintenanceCreationForm
-from . import models
 from machines.forms import make_reference_item_form
+
+from . import serializers
 
 
 # Create views
@@ -159,3 +163,14 @@ class MaintenanceListView(LoginRequiredMixin, ListView):
     model = models.Maintenance
     template_name = 'technical_service/technical_service_list.html'
     context_object_name = 'maintenances'
+
+
+# API
+class MaintenanceViewSet(viewsets.ModelViewSet):
+    queryset = models.Maintenance.objects.all()
+    serializer_class = serializers.MaintenanceSerializer
+
+
+class MaintenanceTypeViewSet(viewsets.ModelViewSet):
+    queryset = models.MaintenanceType.objects.all()
+    serializer_class = serializers.MaintenanceTypeSerializer

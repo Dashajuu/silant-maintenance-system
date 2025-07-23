@@ -1,8 +1,19 @@
-from django.urls import path
+from django.urls import path, include
+
+from rest_framework import routers
 
 from . import views
 
+
+router = routers.DefaultRouter()
+router.register(r'maintenances', views.MaintenanceViewSet)
+router.register(r'maintenance_type', views.MaintenanceTypeViewSet)
+
+
 urlpatterns = [
+    # api
+    path('', include(router.urls)),
+
     # maintenance creation urls
     path('request/create', views.MaintenanceCreateView.as_view(), name='create_maintenance_request'),
     path('backdate_maintenance/create', views.BackdateMaintenanceCreateView.as_view(), name='create_backdate_maintenance'),

@@ -6,9 +6,15 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.models import User
 
-from .forms import ManagerCreationForm, ClientCreationForm, ServiceMasterCreationForm, ContactPersonCreationForm, make_custom_update_form, LoginForm, ServiceCompanyCreationForm
+from rest_framework import viewsets
+
 from .models import Manager, Client, ServiceMaster, ContactPerson, ServiceCompany
 from machines.models import Machine
+
+from .forms import (ManagerCreationForm, ClientCreationForm, ServiceMasterCreationForm,
+                    ContactPersonCreationForm, make_custom_update_form, LoginForm, ServiceCompanyCreationForm)
+
+from . import serializers
 
 
 # TODO: change name or delete
@@ -237,3 +243,29 @@ class ServiceCompanyListView(LoginRequiredMixin, ListView):
 
 class CustomLoginView(LoginView):
     authentication_form = LoginForm
+
+
+# API
+class ManagerViewSet(viewsets.ModelViewSet):
+    queryset = Manager.objects.all()
+    serializer_class = serializers.ManagerSerializer
+
+
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = serializers.ClientSerializer
+
+
+class ServiceCompanyViewSet(viewsets.ModelViewSet):
+    queryset = ServiceCompany.objects.all()
+    serializer_class = serializers.ServiceCompanySerializer
+
+
+class ServiceMasterViewSet(viewsets.ModelViewSet):
+    queryset = ServiceMaster.objects.all()
+    serializer_class = serializers.ServiceMasterSerializer
+
+
+class ContactPersonViewSet(viewsets.ModelViewSet):
+    queryset = ContactPerson.objects.all()
+    serializer_class = serializers.ContactPersonSerializer

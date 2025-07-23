@@ -1,11 +1,24 @@
-from tkinter.font import names
+from django.urls import path, include
 
-from django.urls import path
+from rest_framework import routers
 
 from . import views
 from . import models
 
+
+router = routers.DefaultRouter()
+router.register(r'machines', views.MachineViewSet)
+router.register(r'machine_type', views.MachineTypeViewSet)
+router.register(r'engine_type', views.EngineTypeViewSet)
+router.register(r'transmission_type', views.TransmissionTypeViewSet)
+router.register(r'drive_axle_type', views.DriveAxleTypeSerializer)
+router.register(r'steer_axle_type', views.SteerAxleTypeViewSet)
+
+
 urlpatterns = [
+    # api
+    path('', include(router.urls)),
+
     # machines' creation urls
     path('create', views.MachineCreateView.as_view(), name='create_machine'),
     path('machine_type/create', views.MachineTypeCreateView.as_view(), name='create_machine_type'),

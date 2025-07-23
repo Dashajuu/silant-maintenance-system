@@ -1,13 +1,16 @@
 from django.http import HttpResponse
 from django.template.loader import render_to_string
-from django_filters.views import FilterView
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView, ListView
 from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
 
+from rest_framework import viewsets
+
 from .forms import make_reference_item_form, MachineCreationForm
 from . import models
 from .filters import MachineFilter
+
+from . import serializers
 
 from technical_service.models import Maintenance
 from complaints.models import Complaint
@@ -229,3 +232,37 @@ class MachineListView(ListView):
             return HttpResponse(html)
         else:
             return super().render_to_response(context, **response_kwargs)
+
+
+# API
+class MachineViewSet(viewsets.ModelViewSet):
+    queryset = models.Machine.objects.all()
+    serializer_class = serializers.MachineSerializer
+
+
+class MachineTypeViewSet(viewsets.ModelViewSet):
+    queryset = models.MachineType.objects.all()
+    serializer_class = serializers.MachineTypeSerializer
+
+
+class EngineTypeViewSet(viewsets.ModelViewSet):
+    queryset = models.EngineType.objects.all()
+    serializer_class = serializers.EngineTypeSerializer
+
+
+class TransmissionTypeViewSet(viewsets.ModelViewSet):
+    queryset = models.TransmissionType.objects.all()
+    serializer_class = serializers.TransmissionTypeSerializer
+
+
+class DriveAxleTypeSerializer(viewsets.ModelViewSet):
+    queryset = models.DriveAxleType.objects.all()
+    serializer_class = serializers.DriveAxleTypeSerializer
+
+
+class SteerAxleTypeViewSet(viewsets.ModelViewSet):
+    queryset = models.SteerAxleType.objects.all()
+    serializer_class = serializers.SteerAxleTypeSerializer
+
+
+
