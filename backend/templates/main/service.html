@@ -1,0 +1,137 @@
+{% extends 'default.html' %}
+
+{% load static %}
+
+{% block head_link %}
+    <link rel="stylesheet" href="{% static 'css/manager_reference.css' %}" />
+{% endblock %}
+
+{% block title %}Справочники{% endblock %}
+
+{% block main %}
+  <main>
+      <div class="reference-left">
+      </div>
+
+      <div class="reference-center">
+          <div class="managed-block">
+            <div class="managed-header">
+              <a href="#">
+                ТО
+              </a>
+            </div>
+            <div class="managed-list">
+              <div class="reference-btns">
+                <a href="{% url 'create_machine_type' %}">
+                  Добавить ТО
+                </a>
+              </div>
+                <div class="managed-object">
+                    <table class="machine-table">
+                        <thead class="machine-table__head">
+                            <tr class="machine-table__row machine-table__row--head">
+                                <th class="machine-table__cell machine-table__cell--head">Вид ТО</th>
+                                <th class="machine-table__cell machine-table__cell--head">Дата проведения</th>
+                                <th class="machine-table__cell machine-table__cell--head">Наработка, м/час</th>
+                                <th class="machine-table__cell machine-table__cell--head">Номер заказ-наряда</th>
+                                <th class="machine-table__cell machine-table__cell--head">Дата заказ-наряда</th>
+                                <th class="machine-table__cell machine-table__cell--head">Сервисная компания</th>
+                                <th class="machine-table__cell machine-table__cell--head">Статус</th>
+                            </tr>
+                        </thead>
+                        <tbody class="machine-table__body">
+                            {% for maintenance in maintenances %}
+                                <tr class="machine-table__row">
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.maintenance_type }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.maintenance_date }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.operating_hours }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.work_order_number }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.work_order_date }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.service_company }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.status }}</a></td>
+                                </tr>
+                            {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+          <div class="reference-center">
+          <div class="managed-block">
+            <div class="managed-header">
+              <a href="#">
+                Рекламации
+              </a>
+            </div>
+            <div class="managed-list">
+              <div class="reference-btns">
+                  {% if perms.complaints.add_complaint %}
+                    <a href="{% url 'create_backdate_maintenance' %}">
+                      Добавить рекламацию
+                    </a>
+                  {% endif %}
+              </div>
+                <div class="managed-object">
+                    <table class="machine-table">
+                        <thead class="machine-table__head">
+                            <tr class="machine-table__row machine-table__row--head">
+                                <th class="machine-table__cell machine-table__cell--head">Дата отказа</th>
+                                <th class="machine-table__cell machine-table__cell--head">Наработка, м/час</th>
+                                <th class="machine-table__cell machine-table__cell--head">Узел отказа</th>
+                                <th class="machine-table__cell machine-table__cell--head">Описание отказа</th>
+                                <th class="machine-table__cell machine-table__cell--head">Способ восстановления</th>
+                                <th class="machine-table__cell machine-table__cell--head">Используемые запасные части</th>
+                                <th class="machine-table__cell machine-table__cell--head">Дата восстановления</th>
+                                <th class="machine-table__cell machine-table__cell--head">Время простоя техники</th>
+                                <th class="machine-table__cell machine-table__cell--head">Сервисная компания</th>
+                            </tr>
+                        </thead>
+                        <tbody class="machine-table__body">
+                            {% for complaint in complaints %}
+                                <tr class="machine-table__row">
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.failure_date }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="#">{{ complaint.operating_hours }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_failure_node' complaint.failure_node.pk %}">{{ complaint.failure_node }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.failure_node_description }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_recovery_method' complaint.recovery_method.pk %}">{{ complaint.recovery_method }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.used_spare_parts }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.recovery_date }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.downtime }}</a></td>
+                                    <td class="machine-table__cell">
+                                        <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.service_company }}</a></td>
+                                </tr>
+                            {% endfor %}
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+          </div>
+
+      </div>
+    <div class="reference-right">
+    </div>
+  </main>
+    <script>
+      document.querySelectorAll('.managed-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const block = header.parentElement;
+          block.classList.toggle('active');
+        });
+      });
+    </script>
+{% endblock %}

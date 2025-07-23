@@ -41,9 +41,15 @@
 
     <div class="btn-navigation">
         <div class="contact-navigation">
-            <a href="">
-                Контакты
-            </a>
+            {% if user.is_authenticated %}
+                <a href="">
+                    Обслуживание
+                </a>
+            {% else %}
+                <a href="">
+                    Контакты
+                </a>
+            {% endif %}
         </div>
         <div class="auth-navigation">
             {% if user.is_authenticated %}

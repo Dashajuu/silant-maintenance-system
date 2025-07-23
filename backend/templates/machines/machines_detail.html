@@ -209,19 +209,19 @@
                     {% for maintenance in maintenances %}
                         <tr class="machine-table__row">
                             <td class="machine-table__cell">
-                                <a href="#">{{ maintenance.maintenance_type }}</a></td>
+                                <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.maintenance_type }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ maintenance.maintenance_date }}</a></td>
+                                <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.maintenance_date }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ maintenance.operating_hours }}</a></td>
+                                <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.operating_hours }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ maintenance.work_order_number }}</a></td>
+                                <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.work_order_number }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ maintenance.work_order_date }}</a></td>
+                                <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.work_order_date }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ maintenance.service_company }}</a></td>
+                                <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.service_company }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ maintenance.status }}</a></td>
+                                <a href="{% url 'detail_maintenance' maintenance.pk %}">{{ maintenance.status }}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -257,23 +257,23 @@
                     {% for complaint in complaints %}
                         <tr class="machine-table__row">
                             <td class="machine-table__cell">
-                                <a href="#">{{ complaint.failure_date }}</a></td>
+                                <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.failure_date }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ complaint.operating_hours }}</a></td>
+                                <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.operating_hours }}</a></td>
                             <td class="machine-table__cell">
                                 <a href="{% url 'detail_failure_node' complaint.failure_node.pk %}">{{ complaint.failure_node }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ complaint.failure_node_description }}</a></td>
+                                <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.failure_node_description }}</a></td>
                             <td class="machine-table__cell">
                                 <a href="{% url 'detail_recovery_method' complaint.recovery_method.pk %}">{{ complaint.recovery_method }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ complaint.used_spare_parts }}</a></td>
+                                <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.used_spare_parts }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ complaint.recovery_date }}</a></td>
+                                <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.recovery_date }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ complaint.downtime }}</a></td>
+                                <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.downtime }}</a></td>
                             <td class="machine-table__cell">
-                                <a href="#">{{ complaint.service_company }}</a></td>
+                                <a href="{% url 'detail_complaint' complaint.pk %}">{{ complaint.service_company }}</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
