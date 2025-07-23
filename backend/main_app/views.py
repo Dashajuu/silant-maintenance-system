@@ -5,7 +5,9 @@ from accounts import models as account
 from machines import models as machine
 from technical_service import models as maintenance
 from complaints import models as complaint
+
 from technical_service.filters import MaintenanceFilter
+from complaints.filters import ComplaintFilter
 
 
 def get_manager_context_data(request):
@@ -77,6 +79,10 @@ def get_maintenance_complaints_data(request):
     context['maintenances'] = maintenance_filter.qs
     context['maintenance_filter'] = maintenance_filter
 
-    context['complaints'] = complaint.Complaint.objects.filter(machine__in=machines)
+    complaints_queryset = complaint.Complaint.objects.filter(machine__in=machines)
+    complaint_filter = ComplaintFilter(request.GET, queryset=complaints_queryset)
+
+    context['complaints'] = complaint_filter.qs
+    context['complaint_filter'] = complaint_filter
 
     return render(request, 'main/service.html', context)

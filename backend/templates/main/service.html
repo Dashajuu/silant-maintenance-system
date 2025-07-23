@@ -84,6 +84,12 @@
                     </a>
                   {% endif %}
               </div>
+                <div class="reference-btns">
+                    <form method="get">
+                        {{ complaint_filter.form.as_p }}
+                        <button type="submit">Применить фильтр</button>
+                    </form>
+                </div>
                 <div class="managed-object">
                     <table class="machine-table">
                         <thead class="machine-table__head">
