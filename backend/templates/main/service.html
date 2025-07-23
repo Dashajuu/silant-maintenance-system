@@ -22,10 +22,16 @@
             </div>
             <div class="managed-list">
               <div class="reference-btns">
-                <a href="{% url 'create_machine_type' %}">
+                <a href="{% url 'create_backdate_maintenance' %}">
                   Добавить ТО
                 </a>
               </div>
+                <div class="reference-btns">
+                    <form method="get">
+                      {{ maintenance_filter.form.as_p }}
+                      <button type="submit">Фильтровать</button>
+                    </form>
+                </div>
                 <div class="managed-object">
                     <table class="machine-table">
                         <thead class="machine-table__head">
@@ -73,7 +79,7 @@
             <div class="managed-list">
               <div class="reference-btns">
                   {% if perms.complaints.add_complaint %}
-                    <a href="{% url 'create_backdate_maintenance' %}">
+                    <a href="{% url 'create_backdate_complaint' %}">
                       Добавить рекламацию
                     </a>
                   {% endif %}

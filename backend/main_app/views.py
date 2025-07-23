@@ -5,6 +5,7 @@ from accounts import models as account
 from machines import models as machine
 from technical_service import models as maintenance
 from complaints import models as complaint
+from technical_service.filters import MaintenanceFilter
 
 
 def get_manager_context_data(request):
@@ -69,7 +70,13 @@ def get_maintenance_complaints_data(request):
     else:
         raise Http404("Неизвестная роль пользователя")
 
-    context['maintenances'] = maintenance.Maintenance.objects.filter(machine__in=machines)
+
+    maintenances_qs = maintenance.Maintenance.objects.filter(machine__in=machines)
+    maintenance_filter = MaintenanceFilter(request.GET, queryset=maintenances_qs)
+
+    context['maintenances'] = maintenance_filter.qs
+    context['maintenance_filter'] = maintenance_filter
+
     context['complaints'] = complaint.Complaint.objects.filter(machine__in=machines)
 
     return render(request, 'main/service.html', context)

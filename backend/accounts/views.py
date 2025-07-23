@@ -63,7 +63,7 @@ class ContactPersonCreateView(LoginRequiredMixin, PermissionRequiredMixin, Creat
     form_class = ContactPersonCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
-    permission_required = 'accounts.add_contact_person'
+    permission_required = 'accounts.add_contactperson'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -75,7 +75,7 @@ class ServiceCompanyCreateView(LoginRequiredMixin, PermissionRequiredMixin, Crea
     form_class = ServiceCompanyCreationForm
     template_name = 'accounts/accounts_create.html'
     success_url = reverse_lazy('create_account')
-    permission_required = 'accounts.add_service_company'
+    permission_required = 'accounts.add_servicecompany'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

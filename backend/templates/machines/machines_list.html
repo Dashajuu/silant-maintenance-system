@@ -71,6 +71,11 @@
                   </div>
 
                   <button type="submit" id="submit-btn" class="filter-submit-btn">Найти</button>
+                  {% if perms.machines.add_machine %}
+                    <div class="machine-btn">
+                        <a href="{% url 'create_machine' %}">Добавить машину</a>
+                    </div>
+                  {% endif %}
               </form>
           </div>
 
