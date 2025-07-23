@@ -35,7 +35,7 @@ urlpatterns = [
     path('service_company/<int:pk>/edit', views.ServiceCompanyUpdateView.as_view(), name='update_service_company'),
 
     # accounts' delete urls
-    path('<int:pk>/delete', views.AccountDeleteView.as_view(), name='delete_account'),
+    path('accounts/<int:pk>/delete', views.AccountDeleteView.as_view(), name='delete_account'),
 
     # authorization's urls
     path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),

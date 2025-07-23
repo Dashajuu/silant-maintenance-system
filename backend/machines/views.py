@@ -79,7 +79,7 @@ class SteerAxleTypeCreateView(LoginRequiredMixin, PermissionRequiredMixin, Creat
 
 class MachineCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = MachineCreationForm
-    template_name = 'machines/machines_items_create.html'
+    template_name = 'machines/machines_create.html'
     success_url = reverse_lazy('home_page')
     permission_required = 'machines.add_machine'
 

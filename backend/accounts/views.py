@@ -26,7 +26,7 @@ def account_creation_home(request):
 class ManagerCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     form_class = ManagerCreationForm
     template_name = 'accounts/accounts_create.html'
-    success_url = reverse_lazy('list_managers')
+    success_url = reverse_lazy('create_account')
     permission_required = 'accounts.add_manager'
 
     def get_context_data(self, **kwargs):
@@ -160,7 +160,7 @@ class AccountDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
     model = User
     template_name = 'accounts/accounts_confirm_delete.html'
     success_url = reverse_lazy('create_account')
-    permission_required = 'accounts.delete_account'
+    permission_required = 'auth.delete_user'
 
 
 # Detail views
