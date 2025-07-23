@@ -50,3 +50,58 @@ main {
     background-color: #D20A11;
     border-color: #D20A11;
 }
+
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr 90% 1fr;
+    }
+
+    .machines-item-btns {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .machines-item-btns a {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+
+    .machines-item-title {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .machines-item-description {
+        font-size: 0.9rem;
+    }
+
+    .machines-item-btns a {
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        margin-top: 1.5rem;
+    }
+
+    .machines-item-description {
+        font-size: 0.85rem;
+    }
+
+    .machines-item-btns {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .machines-item-btns a {
+        font-size: 0.6rem;
+        padding: 0.4rem;
+    }
+}

@@ -86,3 +86,84 @@ tr:nth-child(even) {
     background-color: #D20A11;
     border-color: #D20A11;
 }
+
+
+@media (max-width: 1024px) {
+  .tabs {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tab-btn {
+    width: 12rem;
+    font-size: 0.8rem;
+  }
+
+  .tab-btns {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .tab-btns a {
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .machine-detail-title {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .tab-btn {
+    width: 100%;
+    max-width: 100%;
+    font-size: 0.75rem;
+  }
+
+  .tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .machine-detail-title-1,
+  .machine-detail-title-bold {
+    font-size: 1.3rem;
+  }
+
+  .machine-table-head,
+  .machine-table-data {
+    width: auto;
+    display: block;
+  }
+
+  .tab-btns a {
+    width: 100%;
+    font-size: 0.65rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .tab-btn {
+    padding: 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  .tab-btns a {
+    font-size: 0.6rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .machine-detail-title-1,
+  .machine-detail-title-bold {
+    font-size: 1.1rem;
+  }
+
+  .tabs {
+    gap: 0.3rem;
+  }
+}

@@ -117,3 +117,57 @@ main {
     background-color: #D20A11;
     border-color: #D20A11;
 }
+
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr 90% 1fr;
+    }
+
+    .reference-btns {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+
+    .reference-btns a {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+
+    .machine-table {
+        font-size: 12px;
+        overflow-x: auto;
+        display: block;
+    }
+
+    .reference-btns a {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        margin-top: 1.5rem;
+    }
+
+    .machine-table__cell,
+    .machine-table__cell--head {
+        padding: 6px;
+    }
+
+    .reference-btns {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .reference-btns a {
+        font-size: 0.55rem;
+        padding: 0.4rem;
+    }
+}

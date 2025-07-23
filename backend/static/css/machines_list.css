@@ -132,3 +132,58 @@ main {
 .machine-table__cell a:hover {
     color: #D20A11;
 }
+
+
+@media (max-width: 1024px) {
+    .machine-table {
+        font-size: 13px;
+    }
+
+    .machine-table__cell,
+    .machine-table__cell--head {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .machine-table {
+        font-size: 12px;
+    }
+
+    .machine-table__cell,
+    .machine-table__cell--head {
+        padding: 6px;
+    }
+
+    .machine-table__row--head {
+        font-size: 13px;
+    }
+
+    .machine-table__cell a {
+        display: inline-block;
+        max-width: 100%;
+        overflow-wrap: break-word;
+    }
+}
+
+@media (max-width: 480px) {
+    .machine-table {
+        display: block;
+        overflow-x: auto;
+        font-size: 12px;
+    }
+
+    .machine-table__row {
+        white-space: nowrap;
+    }
+
+    .machine-table__cell,
+    .machine-table__cell--head {
+        padding: 6px 8px;
+        white-space: nowrap;
+    }
+
+    .machine-table__cell a {
+        font-size: 12px;
+    }
+}
