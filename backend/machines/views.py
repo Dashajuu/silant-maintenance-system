@@ -206,12 +206,21 @@ class MachineListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+        queryset = super().get_queryset()
+
         self.filterset = MachineFilter(self.request.GET, queryset=queryset)
-        return self.filterset.qs
+        qs = self.filterset.qs
+
+        ordering = self.request.GET.get('ordering')
+        if ordering:
+            qs = qs.order_by(ordering)
+
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = self.filterset
+        context['current_ordering'] = self.request.GET.get('ordering', '')
         return context
 
     def render_to_response(self, context, **response_kwargs):

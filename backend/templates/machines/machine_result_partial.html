@@ -2,16 +2,105 @@
 <table class="machine-table">
     <thead class="machine-table__head">
         <tr class="machine-table__row machine-table__row--head">
-            <th class="machine-table__cell machine-table__cell--head">Зав. номер</th>
-            <th class="machine-table__cell machine-table__cell--head">Модель техники</th>
-            <th class="machine-table__cell machine-table__cell--head">Модель двигателя</th>
-            <th class="machine-table__cell machine-table__cell--head">Зав. номер двигателя</th>
-            <th class="machine-table__cell machine-table__cell--head">Модель трансмиссии</th>
-            <th class="machine-table__cell machine-table__cell--head">Зав. номер трансмиссии</th>
-            <th class="machine-table__cell machine-table__cell--head">Модель ведущего моста</th>
-            <th class="machine-table__cell machine-table__cell--head">Зав. номер ведущего моста</th>
-            <th class="machine-table__cell machine-table__cell--head">Модель управляемого моста</th>
-            <th class="machine-table__cell machine-table__cell--head">Зав. номер управляемого моста</th>
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "machine_serial_number" %}
+                    <a href="?ordering=-machine_serial_number">Зав. номер ▲</a>
+                {% elif current_ordering == "-machine_serial_number" %}
+                    <a href="?ordering=machine_serial_number">Зав. номер ▼</a>
+                {% else %}
+                    <a href="?ordering=machine_serial_number">Зав. номер</a>
+                {% endif %}
+            </th>
+
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "machine_type__name" %}
+                    <a href="?ordering=-machine_type__name">Модель техники ▲</a>
+                {% elif current_ordering == "-machine_type__name" %}
+                    <a href="?ordering=machine_type__name">Модель техники ▼</a>
+                {% else %}
+                    <a href="?ordering=machine_type__name">Модель техники</a>
+                {% endif %}
+            </th>
+
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "engine_type__name" %}
+                    <a href="?ordering=-engine_type__name">Модель двигателя ▲</a>
+                {% elif current_ordering == "-engine_type__name" %}
+                    <a href="?ordering=engine_type__name">Модель двигателя ▼</a>
+                {% else %}
+                    <a href="?ordering=engine_type__name">Модель двигателя</a>
+                {% endif %}
+            </th>
+
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "engine_serial_number" %}
+                    <a href="?ordering=-engine_serial_number">Зав. номер двигателя ▲</a>
+                {% elif current_ordering == "-engine_serial_number" %}
+                    <a href="?ordering=engine_serial_number">Зав. номер двигателя ▼</a>
+                {% else %}
+                    <a href="?ordering=engine_serial_number">Зав. номер двигателя</a>
+                {% endif %}
+            </th>
+
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "transmission_type__name" %}
+                    <a href="?ordering=-transmission_type__name">Модель трансмиссии ▲</a>
+                {% elif current_ordering == "-transmission_type__name" %}
+                    <a href="?ordering=transmission_type__name">Модель трансмиссии ▼</a>
+                {% else %}
+                    <a href="?ordering=transmission_type__name">Модель трансмиссии</a>
+                {% endif %}
+            </th>
+
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "transmission_serial_number" %}
+                    <a href="?ordering=-transmission_serial_number">Зав. номер трансмиссии ▲</a>
+                {% elif current_ordering == "-transmission_serial_number" %}
+                    <a href="?ordering=transmission_serial_number">Зав. номер трансмиссии ▼</a>
+                {% else %}
+                    <a href="?ordering=transmission_serial_number">Зав. номер трансмиссии</a>
+                {% endif %}
+            </th>
+
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "drive_axle_type__name" %}
+                    <a href="?ordering=-drive_axle_type__name">Модель ведущего моста ▲</a>
+                {% elif current_ordering == "-drive_axle_type__name" %}
+                    <a href="?ordering=drive_axle_type__name">Модель ведущего моста ▼</a>
+                {% else %}
+                    <a href="?ordering=drive_axle_type__name">Модель ведущего моста</a>
+                {% endif %}
+            </th>
+
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "drive_axle_serial_number" %}
+                    <a href="?ordering=-drive_axle_serial_number">Зав. номер ведущего моста ▲</a>
+                {% elif current_ordering == "-drive_axle_serial_number" %}
+                    <a href="?ordering=drive_axle_serial_number">Зав. номер ведущего моста ▼</a>
+                {% else %}
+                    <a href="?ordering=drive_axle_serial_number">Зав. номер ведущего моста</a>
+                {% endif %}
+            </th>
+
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "steer_axle_type__name" %}
+                    <a href="?ordering=-steer_axle_type__name">Модель управляемого моста ▲</a>
+                {% elif current_ordering == "-steer_axle_type__name" %}
+                    <a href="?ordering=steer_axle_type__name">Модель управляемого моста ▼</a>
+                {% else %}
+                    <a href="?ordering=steer_axle_type__name">Модель управляемого моста</a>
+                {% endif %}
+            </th>
+
+            <th class="machine-table__cell machine-table__cell--head">
+                {% if current_ordering == "steer_axle_serial_number" %}
+                    <a href="?ordering=-steer_axle_serial_number">Зав. номер управляемого моста ▲</a>
+                {% elif current_ordering == "-steer_axle_serial_number" %}
+                    <a href="?ordering=steer_axle_serial_number">Зав. номер управляемого моста ▼</a>
+                {% else %}
+                    <a href="?ordering=steer_axle_serial_number">Зав. номер управляемого моста</a>
+                {% endif %}
+            </th>
         </tr>
     </thead>
     <tbody class="machine-table__body">
